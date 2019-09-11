@@ -1,0 +1,15 @@
+{% if entity.state == constant('STATE_PENDING', entity) %}
+  <span class="badge badge-pill badge-dark">{{ entity.state }}</span>
+{% elseif entity.state == constant('STATE_ACCEPTED', entity) %}
+  <span class="badge badge-pill badge-info">{{ entity.state }}</span>
+{% elseif entity.state == constant('STATE_REFUNDED', entity) %}
+  <span class="badge badge-pill badge-primary">{{ entity.state }}</span>
+{% elseif entity.state == constant('STATE_COMPLETED', entity) %}
+  <span class="badge badge-pill badge-success">{{ entity.state }}</span>
+{% elseif entity.state == constant('STATE_CANCELLED', entity) %}
+  <span class="badge badge-pill badge-secondary">{{ entity.state }}</span>
+{% elseif entity.state == constant('STATE_EXPIRED', entity) %}
+  <span class="badge badge-pill badge-secondary">{{ entity.state }}</span>
+{% elseif entity.state == constant('STATE_CLOSED', entity) %}
+  <span class="badge badge-pill badge-secondary">{{ entity.state }}</span>
+{% endif %}

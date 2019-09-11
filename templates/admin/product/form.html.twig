@@ -1,0 +1,21 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+
+  <div class="mb-3">
+    <a href="{{ path('admin_product') }}" class="btn btn-light">&laquo;&nbsp;返回</a>
+  </div>
+
+  {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.unit) }}
+    {{ form_row(form.enabled) }}
+    {{ form_row(form.attributeValues) }}
+
+    <div class="form-group row">
+      <div class="col-sm-10 ml-auto">
+        <button type="submit" class="btn btn-primary">{{ 'app.submit'|trans }}</button>
+      </div>
+    </div>
+  {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+
+  <div class="mb-3">
+    <a href="{{ path('admin_index') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
+  </div>
+
+  {{ include('admin/flashes.html.twig') }}
+
+  <table class="table">
+    <tr>
+      <th>{{ 'resource.product.name'|trans }}</th>
+      <th>{{ 'resource.product.category'|trans }}</th>
+      <th>{{ 'resource.product.item'|trans }}</th>
+      <th>{{ 'app.enabled'|trans }}</th>
+      <th>{{ 'app.created_at'|trans }}</th>
+      <th>{{ 'app.action'|trans }}</th>
+    </tr>
+    {% for entity in entities %}
+    <tr>
+      <td>{{ entity.name }}</td>
+      <td>{{ entity.category.name }}</td>
+      <td><span class="badge badge-pill badge-light">{{ entity.items|length }}</span></td>
+      <td>{{ entity|enable }}</td>
+      <td>{{ entity.createdAt|datetimeable }}</td>
+      <td>
+        <a href="{{ path('admin_product_option', {productId: entity.id}) }}">{{ 'resource.product.option'|trans }}</a>
+        <a href="{{ path('admin_product_item', {productId: entity.id}) }}">{{ 'resource.product.item'|trans }}</a>
+        <a href="{{ path('admin_product_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
+        <a href="{{ path('admin_product_delete', {id: entity.id}) }}">{{ 'app.action.delete'|trans }}</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="5" class="text-center text-muted">No items.</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

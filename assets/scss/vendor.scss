@@ -1,0 +1,48 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+@keyframes loading {
+  to { transform: rotate(360deg); }
+}
+
+.choose-image { color: #ced4da; border: 1px dashed #ced4da; border-radius: 0.25rem; background-color: #fff; text-align: center; margin: 0; padding: 1px; position: relative; display: block; cursor: pointer; }
+.choose-image:hover { color: #80bdff; border-color: #80bdff; }
+.choose-image img{ max-width: 100%; max-height: 100%; border-radius: 0.25rem; }
+.choose-image input[type=file] { border: 1px solid blue; display: none; }
+
+.choose-image .fas { font-size: 1.6rem; margin-left: -.8rem; margin-top: -.8rem; position: absolute; top: 50%; left: 50%; }
+.choose-image .fas.fa-spinner { display: none; animation: loading 1.2s linear infinite; }
+
+.choose-image.choose-image-loading,
+.choose-image.choose-image-disabled { color: #e9ecef; border-color: #e9ecef; }
+
+.choose-image.choose-image-loading { cursor: wait; }
+.choose-image.choose-image-disabled { cursor: default; }
+
+.choose-image.choose-image-disabled img { opacity: .5; }
+
+.choose-image.choose-image-loading .fas,
+.choose-image.choose-image-uploaded .fas { display: none; }
+.choose-image.choose-image-loading .fas.fa-spinner { display: block; }
+
+.navbar-nav .nav-item.dropdown.no-arrow .dropdown-toggle::after { display: none; }
+.navbar-nav .nav-item .nav-link .badge { font-size: 0.5rem; font-weight: 400; position: absolute; margin-left: 1rem; top: 0.3rem; }
+
+.navbar .btn,
+.navbar .navbar-brand,
+.sidebar .nav .nav-item .nav-link { color: rgba(255, 255, 255, 0.5); }
+
+.navbar .btn:hover,
+.navbar .navbar-brand:hover,
+.sidebar .nav .nav-item .nav-link:hover,
+.sidebar .nav .nav-item.active .nav-link { color: rgba(255, 255, 255, 0.7); }
+.sidebar .nav .nav-item .nav-link:hover,
+.sidebar .nav .nav-item.active .nav-link { background-color: #23272b; }
+
+.sidebar,
+.content { margin-top: 56px; }
+.sidebar { position: fixed; top: 0; bottom: 0; left: 0; z-index: 100; padding: 0; }
+.sidebar .nav .nav-item { position: relative; }
+.sidebar .nav .nav-item .fas { position: absolute; top: .75rem; left: 1rem; }
+.sidebar .nav .nav-item .nav-link { padding-left: 3rem; }
+

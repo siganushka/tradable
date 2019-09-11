@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  {{ encore_entry_link_tags('vendor') }}
+{% endblock %}
+
+{% block body %}
+  {% block nav %}
+  <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand col-sm-3 col-md-2 text-truncate m-0 p-0" href="{{ path('admin_index') }}">Tradable</a>
+    <button class="btn btn-sm order-1 order-sm-0">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="navbar-nav ml-auto mr-0">
+      <li class="nav-item dropdown no-arrow">
+        <a href="#" class="nav-link dropdown-toggle" id="nav-user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-user">
+          <a class="dropdown-item" href="#">{{ 'resource.user.logger'|trans }}</a>
+          <a class="dropdown-item" href="#">{{ 'resource.user.change_password'|trans }}</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-danger" href="#">{{ 'resource.user.logout'|trans }}</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  {% endblock %}
+
+  {% block container %}
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-dark sidebar">
+        {% block menu %}
+          {% apply spaceless %}
+            {{ knp_menu_render('main', {currentClass: 'active', template: 'admin/menu.html.twig'}) }}
+          {% endapply %}
+        {% endblock %}
+      </nav>
+      <div class="col-sm-9 col-md-10 ml-sm-auto pt-3 content">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+  {{ encore_entry_script_tags('vendor') }}
+{% endblock %}

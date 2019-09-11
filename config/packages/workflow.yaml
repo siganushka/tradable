@@ -1,0 +1,35 @@
+framework:
+    workflows:
+        order_state:
+            type: state_machine
+            marking_store:
+                type: single_state
+                arguments: state
+            supports: App\Entity\Order
+            places:
+                - pending
+                - accepted
+                - refunded
+                - completed
+                - cancelled
+                - expired
+                - closed
+            transitions:
+                pay:
+                    from: pending
+                    to: accepted
+                refund:
+                    from: accepted
+                    to: refunded
+                deliver:
+                    from: accepted
+                    to: completed
+                cancel:
+                    from: pending
+                    to: cancelled
+                expire:
+                    from: pending
+                    to: expired
+                close:
+                    from: pending
+                    to: closed

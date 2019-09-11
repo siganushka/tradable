@@ -1,0 +1,22 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+
+  <div class="mb-3">
+    <a href="{{ path('admin_product_item', {productId: form.vars.value.product.id}) }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
+  </div>
+
+  {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.quantity) }}
+    {{ form_row(form.enabled) }}
+    {{ form_row(form.optionValues) }}
+
+    <div class="form-group row">
+      <div class="col-sm-10 ml-auto">
+        <button type="submit" class="btn btn-primary">{{ 'app.submit'|trans }}</button>
+      </div>
+    </div>
+  {{ form_end(form) }}
+{% endblock %}

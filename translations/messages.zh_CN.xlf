@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="zh-CN" target-language="zh-CN" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="ufxVq7k" resname="app.placeholder">
+        <source>app.placeholder</source>
+        <target>-</target>
+      </trans-unit>
+      <trans-unit id="5GTbhXB" resname="app.back">
+        <source>app.back</source>
+        <target>返回</target>
+      </trans-unit>
+      <trans-unit id="MreILaN" resname="app.save">
+        <source>app.save</source>
+        <target>保存</target>
+      </trans-unit>
+      <trans-unit id="IlSf9rZ" resname="app.submit">
+        <source>app.submit</source>
+        <target>提交</target>
+      </trans-unit>
+      <trans-unit id="PNdP_FD" resname="app.enabled">
+        <source>app.enabled</source>
+        <target>启用</target>
+      </trans-unit>
+      <trans-unit id=".VvzkZa" resname="app.required">
+        <source>app.required</source>
+        <target>必填</target>
+      </trans-unit>
+      <trans-unit id="2iIOiJK" resname="app.sort">
+        <source>app.sort</source>
+        <target>显示排序</target>
+      </trans-unit>
+      <trans-unit id="Dvk5L9V" resname="app.updated_at">
+        <source>app.updated_at</source>
+        <target>更新时间</target>
+      </trans-unit>
+      <trans-unit id="Aynaao8" resname="app.created_at">
+        <source>app.created_at</source>
+        <target>创建时间</target>
+      </trans-unit>
+      <trans-unit id="tCAt25B" resname="app.action">
+        <source>app.action</source>
+        <target>操作</target>
+      </trans-unit>
+      <trans-unit id="3muyt1e" resname="app.action.new">
+        <source>app.action.new</source>
+        <target>添加</target>
+      </trans-unit>
+      <trans-unit id="_vQP_ka" resname="app.action.edit">
+        <source>app.action.edit</source>
+        <target>编辑</target>
+      </trans-unit>
+      <trans-unit id="uAvwGDX" resname="app.action.delete">
+        <source>app.action.delete</source>
+        <target>删除</target>
+      </trans-unit>
+      <trans-unit id="ge._q7I" resname="app.action.show">
+        <source>app.action.show</source>
+        <target>查看</target>
+      </trans-unit>
+      <trans-unit id="kQFRqT." resname="resource.user.logger">
+        <source>resource.user.logger</source>
+        <target>操作日志</target>
+      </trans-unit>
+      <trans-unit id="EgpdE6n" resname="resource.user.change_password">
+        <source>resource.user.change_password</source>
+        <target>修改密码</target>
+      </trans-unit>
+      <trans-unit id="zFHwRsG" resname="resource.user.logout">
+        <source>resource.user.logout</source>
+        <target>退出</target>
+      </trans-unit>
+      <trans-unit id="QK5NvAH" resname="resource.attribute.name">
+        <source>resource.attribute.name</source>
+        <target>属性名称</target>
+      </trans-unit>
+      <trans-unit id="OAcZvD." resname="resource.attribute.type">
+        <source>resource.attribute.type</source>
+        <target>属性类型</target>
+      </trans-unit>
+      <trans-unit id="1IxrBpQ" resname="resource.attribute.type.text_attribute">
+        <source>resource.attribute.type.text_attribute</source>
+        <target>单行文本</target>
+      </trans-unit>
+      <trans-unit id="w1tnO.w" resname="resource.attribute.type.textarea_attribute">
+        <source>resource.attribute.type.textarea_attribute</source>
+        <target>多行文本</target>
+      </trans-unit>
+      <trans-unit id="NEo9.XY" resname="resource.attribute.type.radio_attribute">
+        <source>resource.attribute.type.radio_attribute</source>
+        <target>单选</target>
+      </trans-unit>
+      <trans-unit id="ULFipKW" resname="resource.attribute.type.checkbox_attribute">
+        <source>resource.attribute.type.checkbox_attribute</source>
+        <target>多选</target>
+      </trans-unit>
+      <trans-unit id="YE5PbVN" resname="resource.attribute.type.select_attribute">
+        <source>resource.attribute.type.select_attribute</source>
+        <target>下拉列表</target>
+      </trans-unit>
+      <trans-unit id="yehU0FB" resname="resource.attribute.configuration">
+        <source>resource.attribute.configuration</source>
+        <target>属性配置</target>
+      </trans-unit>
+      <trans-unit id="5pLe7eX" resname="resource.attribute.configuration.choice">
+        <source>resource.attribute.configuration.choice</source>
+        <target>选项</target>
+      </trans-unit>
+      <trans-unit id="VKnTLFT" resname="resource.attribute.configuration.min_count">
+        <source>resource.attribute.configuration.min_count</source>
+        <target>最小数量</target>
+      </trans-unit>
+      <trans-unit id="Il_uApZ" resname="resource.attribute.configuration.max_count">
+        <source>resource.attribute.configuration.max_count</source>
+        <target>最大数量</target>
+      </trans-unit>
+      <trans-unit id="Wfq5urn" resname="resource.attribute.configuration.rows">
+        <source>resource.attribute.configuration.rows</source>
+        <target>行数</target>
+      </trans-unit>
+      <trans-unit id="tcoNGY0" resname="resource.attribute.configuration.min_length">
+        <source>resource.attribute.configuration.min_length</source>
+        <target>最小长度</target>
+      </trans-unit>
+      <trans-unit id="Pgx5RRB" resname="resource.attribute.configuration.max_length">
+        <source>resource.attribute.configuration.max_length</source>
+        <target>最大长度</target>
+      </trans-unit>
+      <trans-unit id="DLn6bgP" resname="resource.category.root.new">
+        <source>resource.category.root.new</source>
+        <target>添加顶级分类</target>
+      </trans-unit>
+      <trans-unit id="JxYs8zU" resname="resource.category.parent">
+        <source>resource.category.parent</source>
+        <target>上级分类</target>
+      </trans-unit>
+      <trans-unit id="hYaPf4o" resname="resource.category.root">
+        <source>resource.category.root</source>
+        <target>顶级分类</target>
+      </trans-unit>
+      <trans-unit id="VGEikNh" resname="resource.category.name">
+        <source>resource.category.name</source>
+        <target>分类名称</target>
+      </trans-unit>
+      <trans-unit id="4Xd2PAO" resname="resource.category.attribute">
+        <source>resource.category.attribute</source>
+        <target>关联属性</target>
+      </trans-unit>
+      <trans-unit id="FwSk.Re" resname="resource.product.category">
+        <source>resource.product.category</source>
+        <target>产品分类</target>
+      </trans-unit>
+      <trans-unit id="XQoM1sT" resname="resource.product.name">
+        <source>resource.product.name</source>
+        <target>产品名称</target>
+      </trans-unit>
+      <trans-unit id="7JSzdXQ" resname="resource.product.unit">
+        <source>resource.product.unit</source>
+        <target>单位名称</target>
+      </trans-unit>
+      <trans-unit id="BM6245p" resname="resource.product.attribute">
+        <source>resource.product.attribute</source>
+        <target>关联属性</target>
+      </trans-unit>
+      <trans-unit id="j1p6uUj" resname="resource.product.option">
+        <source>resource.product.option</source>
+        <target>规格</target>
+      </trans-unit>
+      <trans-unit id="bDLOoBu" resname="resource.product.option.name">
+        <source>resource.product.option.name</source>
+        <target>规格名称</target>
+      </trans-unit>
+      <trans-unit id="VHACUd2" resname="resource.product.option.value">
+        <source>resource.product.option.value</source>
+        <target>规格选项</target>
+      </trans-unit>
+      <trans-unit id="vWvj8Zm" resname="resource.product.option.value.name">
+        <source>resource.product.option.value.name</source>
+        <target>选项名称</target>
+      </trans-unit>
+      <trans-unit id="NBgusmo" resname="resource.product.item">
+        <source>resource.product.item</source>
+        <target>商品</target>
+      </trans-unit>
+      <trans-unit id="OEZ._V5" resname="resource.product.item.name">
+        <source>resource.product.item.name</source>
+        <target>商品名称</target>
+      </trans-unit>
+      <trans-unit id="BA4IVpd" resname="resource.product.item.price">
+        <source>resource.product.item.price</source>
+        <target>商品价格</target>
+      </trans-unit>
+      <trans-unit id="wN6HYBN" resname="resource.product.item.quantity">
+        <source>resource.product.item.quantity</source>
+        <target>库存数量</target>
+      </trans-unit>
+      <trans-unit id="c2v_Shx" resname="resource.product.item.quantity_untracked">
+        <source>resource.product.item.quantity_untracked</source>
+        <target>不限</target>
+      </trans-unit>
+      <trans-unit id="ilbvPPj" resname="resource.order.number">
+        <source>resource.order.number</source>
+        <target>订单编号</target>
+      </trans-unit>
+      <trans-unit id="_5mb0h8" resname="resource.order.items_total">
+        <source>resource.order.items_total</source>
+        <target>总计金额</target>
+      </trans-unit>
+      <trans-unit id="dxLRE0Z" resname="resource.order.total">
+        <source>resource.order.total</source>
+        <target>实付金额</target>
+      </trans-unit>
+      <trans-unit id="8Spp4zf" resname="resource.order.state">
+        <source>resource.order.state</source>
+        <target>状态</target>
+      </trans-unit>
+      <trans-unit id="svIWJYT" resname="resource.order.item">
+        <source>resource.order.item</source>
+        <target>商品信息</target>
+      </trans-unit>
+      <trans-unit id="HfYtTgu" resname="resource.order.item.name">
+        <source>resource.order.item.name</source>
+        <target>商品名称</target>
+      </trans-unit>
+      <trans-unit id="tYMYg7m" resname="resource.order.item.price">
+        <source>resource.order.item.price</source>
+        <target>商品单价</target>
+      </trans-unit>
+      <trans-unit id="9cOIUxh" resname="resource.order.item.quantity">
+        <source>resource.order.item.quantity</source>
+        <target>数量</target>
+      </trans-unit>
+      <trans-unit id="3HAXb89" resname="resource.order.item.subtotal">
+        <source>resource.order.item.subtotal</source>
+        <target>小计</target>
+      </trans-unit>
+      <trans-unit id="pqAmqP6" resname="message.delete.confirm">
+        <source>message.delete.confirm</source>
+        <target>确定要删除吗？</target>
+      </trans-unit>
+      <trans-unit id="vtQKbYG" resname="admin.menu.welcome">
+        <source>admin.menu.welcome</source>
+        <target>仪表盘</target>
+      </trans-unit>
+      <trans-unit id="fWeH5Gn" resname="admin.menu.attribute">
+        <source>admin.menu.attribute</source>
+        <target>属性</target>
+      </trans-unit>
+      <trans-unit id="iPqXY4v" resname="admin.menu.category">
+        <source>admin.menu.category</source>
+        <target>分类</target>
+      </trans-unit>
+      <trans-unit id="AR5bd8h" resname="admin.menu.product">
+        <source>admin.menu.product</source>
+        <target>产品</target>
+      </trans-unit>
+      <trans-unit id="QlKvjtr" resname="admin.menu.order">
+        <source>admin.menu.order</source>
+        <target>订单</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

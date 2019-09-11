@@ -1,0 +1,61 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+
+  <div class="mb-3">
+    <a href="{{ path('admin_index') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
+    <a href="{{ path('admin_category_new') }}" class="btn btn-light">{{ 'resource.category.root.new'|trans }}</a>
+  </div>
+
+  {{ include('admin/flashes.html.twig') }}
+
+  <div class="row">
+    <div class="col-4">
+      <div id="tree" class="border rounded table-responsive p-3"
+        data-url="{{ url('api_category_get_collection') }}"
+        data-new="{{ path('admin_category_new', {parentId: ':parentId'}) }}"
+        data-edit="{{ path('admin_category_edit', {id: ':id'}) }}"
+        data-delete="{{ path('admin_category_delete', {id: ':id'}) }}"
+        data-product="{{ path('admin_product_new', {categoryId: ':categoryId'}) }}"></div>
+    </div>
+    <div class="col-8">
+      {{ form_start(form) }}
+
+      <div class="form-group">
+        <label for="{{ form.parent.vars.id }}">{{ form.parent.vars.label|trans }}</label>
+        {{ form_widget(form.parent) }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.name.vars.id }}">{{ form.name.vars.label|trans }}</label>
+        {{ form_widget(form.name) }}
+      </div>
+      
+      <div class="form-group">
+        <label for="{{ form.sort.vars.id }}">{{ form.sort.vars.label|trans }}</label>
+        {{ form_widget(form.sort) }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.attributes.vars.id }}">{{ form.attributes.vars.label|trans }}</label>
+        {{ form_widget(form.attributes) }}
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">{{ 'app.submit'|trans }}</button>
+      </div>
+
+      {{ form_end(form) }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  {{ encore_entry_link_tags('jstree') }}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('jstree') }}
+{% endblock %}

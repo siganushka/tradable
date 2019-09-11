@@ -1,0 +1,26 @@
+{% block native_file_widget %}
+  <input type="{{ type }}" {{ block('widget_attributes') }}>
+{% endblock %}
+
+{% block choose_image_widget %}
+  <label
+    class="{{ _label_class }}"
+    style="{{ _label_style }}"
+    data-upload-url="{{ form.vars.upload_url }}"
+    data-target-ref="#{{ form._data.vars.id }}"
+    data-loading-class="{{ form.vars.loading_class }}"
+    data-disabled-class="{{ form.vars.disabled_class }}"
+    data-uploaded-class="{{ form.vars.uploaded_class }}">
+
+    <i class="fas fa-plus"></i>
+    <i class="fas fa-spinner"></i>
+
+    {{ form_widget(form._file) }}
+    {{ form_widget(form._data) }}
+
+    {% if form._data.vars.value is not empty %}
+      <img src="{{ form._data.vars.value }}" />
+    {% endif %}
+  </label>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+
+  <div class="mb-3">
+    <a href="{{ path('admin_product') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
+    <a href="{{ path('admin_product_option_new', {productId: product.id}) }}" class="btn btn-light">{{ 'app.action.new'|trans }}</a>
+  </div>
+
+  {{ include('admin/flashes.html.twig') }}
+
+  <table class="table">
+    <tr>
+      <th>{{ 'resource.product.option.name'|trans }}</th>
+      <th>{{ 'resource.product.option.value'|trans }}</th>
+      <th>{{ 'app.created_at'|trans }}</th>
+      <th>{{ 'app.action'|trans }}</th>
+    </tr>
+    {% for entity in product.options %}
+    <tr>
+      <td>{{ entity.name }}</td>
+      <td>
+        {% for value in entity.values %}
+        {{ value.name }} {% if value != entity.values|last %}/{% endif %}
+        {% endfor %}
+      </td>
+      <td>{{ entity.createdAt|datetimeable }}</td>
+      <td>
+        <a href="{{ path('admin_product_option_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
+        <a href="{{ path('admin_product_option_delete', {id: entity.id}) }}">{{ 'app.action.delete'|trans }}</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="4" class="text-center text-muted">No items.</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

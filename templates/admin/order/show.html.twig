@@ -1,0 +1,53 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+
+  <div class="mb-3">
+    <a href="{{ path('admin_order') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
+  </div>
+
+  <table class="table table-bordered">
+    <tr>
+      <th width="30%">{{ 'resource.order.number'|trans }}</th>
+      <td width="70%">{{ entity.number }}</td>
+    </tr>
+    <tr>
+      <th>{{ 'resource.order.items_total'|trans }}</th>
+      <td>{{ entity.itemsTotal|price }}</td>
+    </tr>
+    <tr>
+      <th>{{ 'resource.order.total'|trans }}</th>
+      <td>{{ entity.total|price }}</td>
+    </tr>
+    <tr>
+      <th>{{ 'resource.order.state'|trans }}</th>
+      <td>{{ include('admin/order/state.html.twig') }}</tr>
+    <tr>
+      <th>{{ 'app.created_at'|trans }}</th>
+      <td>{{ entity.createdAt|datetimeable }}</td>
+    </tr>
+    <tr>
+      <th>{{ 'resource.order.item'|trans }}</th>
+      <td>
+        <table class="table table-sm table-borderless m-0">
+          <tr>
+            <th>{{ 'resource.order.item.name'|trans }}</th>
+            <th>{{ 'resource.order.item.price'|trans }}</th>
+            <th>{{ 'resource.order.item.subtotal'|trans }}</th>
+          </tr>
+          {% for item in entity.items %}
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price|price }} <small class="text-secondary">x {{ item.quantity }}</small></td>
+            <td>{{ item.subtotal|price }}</td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="3" class="text-center text-muted">No items.</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+  <div class="mb-3">
+    <a href="{{ path('admin_index') }}" class="btn btn-light">&laquo;&nbsp;返回</a>
+  </div>
+  {{ form(form) }}
+{% endblock %}

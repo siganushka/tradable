@@ -1,0 +1,10 @@
+{% extends '@KnpMenu/menu.html.twig' %}
+
+{% import 'knp_menu.html.twig' as knp_menu %}
+
+{% block linkElement %}
+<a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>
+  <i class="{{ item.getExtra('icon') }}"></i>
+  {{ block('label') }}
+</a>
+{% endblock %}
