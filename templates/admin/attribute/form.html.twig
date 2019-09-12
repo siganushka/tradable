@@ -1,28 +1,6 @@
 {% extends 'admin/layout.html.twig' %}
 
-{% form_theme form _self %}
-
-{% block _attribute_configuration_choices_widget %}
-<button type="button" class="btn btn-success mb-2 collection-add">
-  <i class="fas fa-plus"></i>
-</button>
-<div class="collection" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
-{% for child in form %}
-  {{ form_widget(child) }}
-{% endfor %}
-</div>
-{% endblock _attribute_configuration_choices_widget %}
-
-{% block _attribute_configuration_choices_entry_widget %}
-<div class="input-group collection-items mb-2">
-  {{ form_widget(form) }}
-  <div class="input-group-append">
-    <button type="button" class="btn btn-danger collection-remove">
-      <i class="fas fa-trash-alt"></i>
-    </button>
-  </div>
-</div>
-{% endblock _attribute_configuration_choices_entry_widget %}
+{% form_theme form 'admin/attribute/_type.html.twig' %}
 
 {% block content %}
   <div class="mb-3">
@@ -32,7 +10,10 @@
   {{ form_start(form) }}
     {{ form_row(form.type) }}
     {{ form_row(form.name) }}
-    {{ form_row(form.configuration) }}
+
+    {% if form.configuration is not null %}
+      {{ form_row(form.configuration) }}
+    {% endif %}
 
     <div class="form-group row">
       <div class="col-sm-10 ml-auto">

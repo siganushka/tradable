@@ -7,7 +7,7 @@
 
 .choose-image { color: #ced4da; border: 1px dashed #ced4da; border-radius: 0.25rem; background-color: #fff; text-align: center; margin: 0; padding: 1px; position: relative; display: block; cursor: pointer; }
 .choose-image:hover { color: #80bdff; border-color: #80bdff; }
-.choose-image img{ max-width: 100%; max-height: 100%; border-radius: 0.25rem; }
+.choose-image img { max-width: 100%; max-height: 100%; border-radius: 0.25rem; }
 .choose-image input[type=file] { border: 1px solid blue; display: none; }
 
 .choose-image .fas { font-size: 1.6rem; margin-left: -.8rem; margin-top: -.8rem; position: absolute; top: 50%; left: 50%; }
@@ -24,6 +24,10 @@
 .choose-image.choose-image-loading .fas,
 .choose-image.choose-image-uploaded .fas { display: none; }
 .choose-image.choose-image-loading .fas.fa-spinner { display: block; }
+
+.row-switch { width: 16px; height: 16px; vertical-align: middle; border: 1px solid #dae0e5; border-radius: 0.25rem; background: #e2e6ea url('../img/arrow-up-down.png') center 0 no-repeat; display: inline-block; position:relative; }
+.row-switch-up { background-position-y: -16px; }
+.row-switch-disabled { opacity: .3; }
 
 .navbar-nav .nav-item.dropdown.no-arrow .dropdown-toggle::after { display: none; }
 .navbar-nav .nav-item .nav-link .badge { font-size: 0.5rem; font-weight: 400; position: absolute; margin-left: 1rem; top: 0.3rem; }

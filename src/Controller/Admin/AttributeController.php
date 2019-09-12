@@ -27,7 +27,7 @@ class AttributeController extends AbstractController
     /**
      * @Route("/attributes", name="admin_attribute", methods="GET")
      */
-    public function index(AttributeTypeRegistryInterface $registry, AttributeRepository $attributeRepository): Response
+    public function index(AttributeTypeRegistryInterface $registry): Response
     {
         $entities = $this->attributeRepository->findAll();
 

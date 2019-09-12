@@ -1,0 +1,25 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% form_theme form 'admin/attribute/_type.html.twig' %}
+
+{% block content %}
+  <div class="mb-3">
+    <a href="{{ path('admin_category') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
+  </div>
+
+  {{ form_start(form) }}
+    {% if form.parent is not null %}
+      {{ form_row(form.parent) }}
+    {% endif %}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.sort) }}
+    {{ form_row(form.attributes) }}
+
+    <div class="form-group row">
+      <div class="col-sm-10 ml-auto">
+        <button type="submit" class="btn btn-primary">{{ 'app.submit'|trans }}</button>
+      </div>
+    </div>
+  {{ form_end(form) }}
+{% endblock %}

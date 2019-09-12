@@ -39,7 +39,7 @@ class Category implements ResourceInterface, SortableInterface, TimestampableInt
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Category", mappedBy="parent", cascade={"all"}, orphanRemoval=true)
-     * @ORM\OrderBy({"sort": "ASC"})
+     * @ORM\OrderBy({"sort": "ASC", "id": "DESC"})
      */
     private $children;
 

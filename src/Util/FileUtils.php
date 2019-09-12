@@ -11,7 +11,7 @@ namespace App\Util;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class FileUtil
+class FileUtils
 {
     private $requestStack;
     private $publicDir;
@@ -22,7 +22,7 @@ class FileUtil
         $this->publicDir = $publicDir;
     }
 
-    public function getAccessableUrl(File $file)
+    public function getAbsoluteUrl(File $file)
     {
         $request = $this->requestStack->getCurrentRequest();
         $relativePath = $this->getRelativePath($file);

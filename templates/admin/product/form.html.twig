@@ -11,7 +11,7 @@
     {{ form_row(form.unit) }}
     {{ form_row(form.enabled) }}
 
-    {% if form.attributeValues is defined %}
+    {% if form.attributeValues is not null %}
       {{ form_row(form.attributeValues) }}
     {% endif %}
 

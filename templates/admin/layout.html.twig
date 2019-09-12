@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-  {{ encore_entry_link_tags('vendor') }}
+  {{ encore_entry_link_tags('admin') }}
 {% endblock %}
 
 {% block body %}
@@ -12,10 +12,8 @@
       <i class="fas fa-bars"></i>
     </button>
     <ul class="navbar-nav ml-auto mr-0">
-      <li class="nav-item dropdown no-arrow">
-        <a href="#" class="nav-link dropdown-toggle" id="nav-user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle fa-fw"></i>
-        </a>
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" id="nav-user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Siganushka</a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-user">
           <a class="dropdown-item" href="#">{{ 'resource.user.logger'|trans }}</a>
           <a class="dropdown-item" href="#">{{ 'resource.user.change_password'|trans }}</a>
@@ -46,5 +44,5 @@
 {% endblock %}
 
 {% block javascripts %}
-  {{ encore_entry_script_tags('vendor') }}
+  {{ encore_entry_script_tags('admin') }}
 {% endblock %}

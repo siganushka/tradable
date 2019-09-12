@@ -12,8 +12,13 @@ $(function() {
 
   $('[data-confirm-link]').on('click', function(event) {
     var $el = $(event.currentTarget)
-    if (false === confirm($el.data('confirm-link'))) {
-      event.preventDefault()
+    if ($el.hasClass('row-loading')) {
+      return false
+    }
+
+    var confirmText = $el.data('confirm-text') || 'Are you sure?'
+    if (false === confirm(confirmText)) {
+      return false
     }
   })
 

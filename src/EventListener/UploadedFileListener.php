@@ -9,17 +9,17 @@
 namespace App\EventListener;
 
 use App\Events;
-use App\Util\FileUtil;
+use App\Util\FileUtils;
 use App\Event\UploadedFileEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class UploadedFileListener implements EventSubscriberInterface
 {
-    private $fileUtil;
+    private $fileUtils;
 
-    public function __construct(FileUtil $fileUtil)
+    public function __construct(FileUtils $fileUtils)
     {
-        $this->fileUtil = $fileUtil;
+        $this->fileUtils = $fileUtils;
     }
 
     public function onUploadedFile(UploadedFileEvent $event)
@@ -27,11 +27,11 @@ class UploadedFileListener implements EventSubscriberInterface
         $file = $event->getFile();
 
         $event->setData([
-            'url' => $this->fileUtil->getAccessableUrl($file),
+            'url' => $this->fileUtils->getAbsoluteUrl($file),
             'name' => $file->getFilename(),
-            'path' => $this->fileUtil->getRelativePath($file),
+            'path' => $this->fileUtils->getRelativePath($file),
             'size' => $file->getSize(),
-            'size_formatted' => $this->fileUtil->getFormattedSize($file),
+            'size_formatted' => $this->fileUtils->getFormattedSize($file),
             'extension' => $file->getExtension(),
         ])->stopPropagation();
     }

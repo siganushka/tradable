@@ -30,8 +30,7 @@ Encore
       preset: ['default', { discardComments: { removeAll: true } }]
     }
   })
-  .addEntry('vendor', ['./assets/js/vendor.js', './assets/scss/vendor.scss'])
-  .addEntry('jstree', ['./assets/js/jstree.js', './node_modules/jstree/dist/themes/default/style.min.css'])
+  .addEntry('admin', ['./assets/js/admin.js', './assets/scss/admin.scss'])
 ;
 
 module.exports = Encore.getWebpackConfig();

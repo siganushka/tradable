@@ -9,7 +9,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
-use App\Model\SortableInterface;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,12 +25,22 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/categories", name="admin_category", methods="GET|POST")
+     */
+    public function index(): Response
+    {
+        $entities = $this->categoryRepository->getRootCategories();
+
+        return $this->render('admin/category/index.html.twig', [
+            'entities' => $entities,
+        ]);
+    }
+
+    /**
      * @Route("/categories/new/{parentId}", name="admin_category_new", methods="GET|POST")
      */
-    public function index(Request $request, string $parentId = null): Response
+    public function new(Request $request, string $parentId = null)
     {
         $entity = new Category();
-        $entity->setSort(SortableInterface::DEFAULT_SORT);
 
         if ($parentId && $parent = $this->categoryRepository->find($parentId)) {
             $entity->setParent($parent);
@@ -49,12 +58,10 @@ class CategoryController extends AbstractController
                 '%name%' => $entity->getName(),
             ]);
 
-            return $this->redirectToRoute('admin_category_edit', [
-                'id' => $entity->getId(),
-            ]);
+            return $this->redirectToRoute('admin_category');
         }
 
-        return $this->render('admin/category/index.html.twig', [
+        return $this->render('admin/category/form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -80,12 +87,10 @@ class CategoryController extends AbstractController
                 '%name%' => $entity->getName(),
             ]);
 
-            return $this->redirectToRoute('admin_category_edit', [
-                'id' => $entity->getId(),
-            ]);
+            return $this->redirectToRoute('admin_category');
         }
 
-        return $this->render('admin/category/index.html.twig', [
+        return $this->render('admin/category/form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -93,7 +98,7 @@ class CategoryController extends AbstractController
     /**
      * @Route("/categories/{id}/delete", name="admin_category_delete", methods="GET")
      */
-    public function delete(string $id): Response
+    public function delete($id): Response
     {
         $entity = $this->categoryRepository->find($id);
         if (!$entity) {
@@ -125,5 +130,29 @@ class CategoryController extends AbstractController
         ]);
 
         return $this->redirectToRoute('admin_category');
+    }
+
+    /**
+     * @Route("/categories/row", name="admin_category_row", methods="GET")
+     */
+    public function row(Request $request): Response
+    {
+        $queryBuilder = $this->categoryRepository->createQueryBuilder('c')
+            ->where('c.parent IS NULL')
+            ->addOrderBy('c.sort', 'ASC')
+            ->addOrderBy('c.id', 'DESC');
+
+        if (null !== $parentId = $request->query->get('parent_id')) {
+            $queryBuilder
+                ->where('c.parent = :parent')
+                ->setParameter('parent', $parentId)
+            ;
+        }
+
+        $query = $queryBuilder->getQuery();
+
+        return $this->render('admin/category/_row.html.twig', [
+            'entities' => $query->getResult(),
+        ]);
     }
 }

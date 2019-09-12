@@ -23,7 +23,8 @@ class CategoryRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('c')
             ->where('c.parent IS NULL')
-            ->orderBy('c.createdAt', 'ASC')
+            ->addOrderBy('c.sort', 'ASC')
+            ->addOrderBy('c.id', 'DESC')
             ->getQuery()
         ;
 
