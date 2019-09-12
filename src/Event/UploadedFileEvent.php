@@ -12,7 +12,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FilterUploadedFileEvent extends Event
+class UploadedFileEvent extends Event
 {
     private $data = [];
 

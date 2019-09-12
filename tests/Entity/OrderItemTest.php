@@ -3,7 +3,7 @@
 /*
  * This file is part of the tradable.
  *
- * @author eb22fbb4 <eb22fbb4@gmail.com>
+ * @author siganushka <siganushka@gmail.com>
  */
 
 namespace App\Tests\Entity;

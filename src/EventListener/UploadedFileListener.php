@@ -8,9 +8,9 @@
 
 namespace App\EventListener;
 
-use App\Event\FilterUploadedFileEvent;
 use App\Events;
 use App\Util\FileUtil;
+use App\Event\UploadedFileEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class UploadedFileListener implements EventSubscriberInterface
@@ -22,7 +22,7 @@ class UploadedFileListener implements EventSubscriberInterface
         $this->fileUtil = $fileUtil;
     }
 
-    public function onUploadedFile(FilterUploadedFileEvent $event)
+    public function onUploadedFile(UploadedFileEvent $event)
     {
         $file = $event->getFile();
 

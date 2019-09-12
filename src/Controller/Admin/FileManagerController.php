@@ -9,7 +9,7 @@
 namespace App\Controller\Admin;
 
 use App\Events;
-use App\Event\FilterUploadedFileEvent;
+use App\Event\UploadedFileEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -74,7 +74,7 @@ class FileManagerController extends AbstractController
             return $this->json(['message' => $e->getMessage()], 400);
         }
 
-        $event = new FilterUploadedFileEvent($file, $uploadedFile);
+        $event = new UploadedFileEvent($file, $uploadedFile);
         $this->dispatcher->dispatch(Events::UPLOADED_FILE, $event);
 
         if (!$event->isPropagationStopped()) {
