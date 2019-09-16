@@ -26,8 +26,8 @@
 .choose-image.choose-image-loading .fas.fa-spinner { display: block; }
 
 .row-switch { width: 16px; height: 16px; vertical-align: middle; border: 1px solid #dae0e5; border-radius: 0.25rem; background: #e2e6ea url('../img/arrow-up-down.png') center 0 no-repeat; display: inline-block; position:relative; }
+.row-switch:disabled { opacity: .3; }
 .row-switch-up { background-position-y: -16px; }
-.row-switch-disabled { opacity: .3; }
 
 .navbar-nav .nav-item.dropdown.no-arrow .dropdown-toggle::after { display: none; }
 .navbar-nav .nav-item .nav-link .badge { font-size: 0.5rem; font-weight: 400; position: absolute; margin-left: 1rem; top: 0.3rem; }

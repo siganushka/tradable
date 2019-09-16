@@ -133,16 +133,16 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/categories/row", name="admin_category_row", methods="GET")
+     * @Route("/categories/row/{parentId}", name="admin_category_row", methods="GET")
      */
-    public function row(Request $request): Response
+    public function row(string $parentId = null): Response
     {
         $queryBuilder = $this->categoryRepository->createQueryBuilder('c')
             ->where('c.parent IS NULL')
             ->addOrderBy('c.sort', 'ASC')
             ->addOrderBy('c.id', 'DESC');
 
-        if (null !== $parentId = $request->query->get('parent_id')) {
+        if (null !== $parentId) {
             $queryBuilder
                 ->where('c.parent = :parent')
                 ->setParameter('parent', $parentId)

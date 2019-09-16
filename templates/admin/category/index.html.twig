@@ -4,28 +4,27 @@
 
   <div class="mb-3">
     <a href="{{ path('admin_index') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
-    <a href="{{ path('admin_category_new') }}" class="btn btn-primary">{{ 'resource.category.root.new'|trans }}</a>
+    <a href="{{ path('admin_category_new') }}" class="btn btn-primary">{{ 'app.action.new'|trans }}</a>
   </div>
 
   {{ include('admin/flashes.html.twig') }}
 
-  <table>
-    <tbody>
+  <table class="table table-bordered">
+    <tr>
+      <th>{{ 'resource.category.name'|trans }}</th>
+      <th>{{ 'resource.category.children'|trans }}</th>
+      <th>{{ 'app.sort'|trans }}</th>
+      <th>{{ 'app.created_at'|trans }}</th>
+      <th>{{ 'app.action'|trans }}</th>
+    </tr>
+    {% if entities|length %}
+      {{ include('admin/category/_row.html.twig') }}
+    {% else %}
       <tr>
-        <th>{{ 'resource.category.name'|trans }}</th>
-        <th>{{ 'app.sort'|trans }}</th>
-        <th>{{ 'app.created_at'|trans }}</th>
-        <th>{{ 'app.action'|trans }}</th>
+        <td colspan="4" class="text-center text-muted">No items.</td>
       </tr>
-      {% if entities|length %}
-        {{ include('admin/category/_row.html.twig') }}
-      {% else %}
-        <tr>
-          <td colspan="4" class="text-center text-muted">No items.</td>
-        </tr>
-      {% endif %}
-    </tbody>
-  </table>
+    {% endif %}
+</table>
 {% endblock %}
 
 {% block javascripts %}
@@ -34,11 +33,15 @@
 $(function() {
   $('table').on('click', '.row-switch-down', function(el) {
     var $el = $(el.currentTarget)
-    var $tr = $el.closest('tr')
 
     $.get($el.data('url'))
       .done(function(r) {
-        $tr.after(r)
+        if ('' === $.trim(r)) {
+          $el.prop('disabled', true)
+          return false
+        }
+
+        $el.closest('tr').after(r)
         $el
           .removeClass('row-switch-down')
           .addClass('row-switch-up')

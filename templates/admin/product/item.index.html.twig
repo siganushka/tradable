@@ -4,7 +4,7 @@
 
   <div class="mb-3">
     <a href="{{ path('admin_product') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
-    <a href="{{ path('admin_product_item_new', {productId: product.id}) }}" class="btn btn-light">{{ 'app.action.new'|trans }}</a>
+    <a href="{{ path('admin_product_item_new', {productId: product.id}) }}" class="btn btn-primary">{{ 'app.action.new'|trans }}</a>
   </div>
 
   {{ include('admin/flashes.html.twig') }}
@@ -12,7 +12,6 @@
   <table class="table">
     <tr>
       <th>{{ 'resource.product.item.name'|trans }}</th>
-      <th>{{ 'resource.product.option'|trans }}</th>
       <th>{{ 'resource.product.item.price'|trans }}</th>
       <th>{{ 'resource.product.unit'|trans }}</th>
       <th>{{ 'resource.product.item.quantity'|trans }}</th>
@@ -22,11 +21,11 @@
     </tr>
     {% for entity in product.items %}
     <tr>
-      <td>{{ entity.name }}</td>
       <td>
-        {% for optionValue in entity.optionValues %}
+        {{ entity.name }}
+        ({% for optionValue in entity.optionValues %}
         {{ optionValue.name }} {% if optionValue != entity.optionValues|last %}/{% endif %}
-        {% endfor %}
+        {% endfor %})
       </td>
       <td>{{ entity.price|price }}</td>
       <td>{{ entity.product.unit }}</td>

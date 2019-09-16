@@ -1,38 +1,34 @@
-
 {% set _first = entities|first %}
 {% set _last = entities|last %}
 
 {% for entity in entities %}
-  <tr id="category-{{ entity.id }}" class="category-parent-{{ entity.parent ? entity.parent.id : 'root' }}">
-    <td>
-      {{- '&nbsp;'|str_repeat(entity.depth * 5) -}}
+<tr id="category-{{ entity.id }}" class="category-parent-{{ entity.parent ? entity.parent.id : 'root' }}">
+  <td>
+    {{- '&nbsp;'|str_repeat(entity.depth * 5) -}}
 
-      {% if entity.isEqual(_first) %}
-        ┌ 
-      {% elseif entity.isEqual(_last) %}
-        └ 
-      {% else %}
-        ├
-      {% endif %}
+    {%- if entity.isEqual(_first) -%}
+      ┌ 
+    {%- elseif entity.isEqual(_last) -%}
+      └ 
+    {%- else -%}
+      ├
+    {%- endif -%}
 
-      {% if entity.children|length > 0 %}
-        <button class="row-switch row-switch-down"
-          data-id="{{ entity.id }}"
-          data-url="{{ path('admin_category_row', {parent_id: entity.id}) }}"></button>
-      {% else %}
-        <button class="row-switch row-switch-disabled" disabled></button>
-      {% endif %}
+    <button class="mx-1 row-switch row-switch-down"
+      data-id="{{ entity.id }}"
+      data-url="{{ path('admin_category_row', {parentId: entity.id}) }}"></button>
 
-      {{- entity.name -}}
-    </td>
-    <td>{{ entity.sort }}</td>
-    <td>{{ entity.createdAt|datetimeable }}</td>
-    <td>
-      <a href="{{ path('admin_category_new', {parentId: entity.id}) }}">{{ 'app.action.new'|trans }}</a>
-      <a href="{{ path('admin_category_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
-      <a href="{{ path('admin_category_delete', {id: entity.id, token: csrf_token('delete')}) }}"
-        data-confirm-link="{{ 'message.delete.confirm'|trans }}"
-        data-method="DELETE">{{ 'app.action.delete'|trans }}</a>
-    </td>
-  </tr>
+    {{- entity.name -}}
+  </td>
+  <td><span class="badge badge-pill badge-light">{{ entity.children|length }}</span></td>
+  <td>{{ entity.sort }}</td>
+  <td>{{ entity.createdAt|datetimeable }}</td>
+  <td>
+    <a href="{{ path('admin_category_new', {parentId: entity.id}) }}">{{ 'app.action.new'|trans }}</a>
+    <a href="{{ path('admin_category_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
+    <a href="{{ path('admin_category_delete', {id: entity.id, token: csrf_token('delete')}) }}"
+      data-confirm-link="{{ 'message.delete.confirm'|trans }}"
+      data-method="DELETE">{{ 'app.action.delete'|trans }}</a>
+  </td>
+</tr>
 {% endfor %}

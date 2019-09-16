@@ -129,13 +129,13 @@
         <source>resource.attribute.configuration.max_length</source>
         <target>最大长度</target>
       </trans-unit>
-      <trans-unit id="DLn6bgP" resname="resource.category.root.new">
-        <source>resource.category.root.new</source>
-        <target>添加顶级分类</target>
-      </trans-unit>
       <trans-unit id="JxYs8zU" resname="resource.category.parent">
         <source>resource.category.parent</source>
         <target>上级分类</target>
+      </trans-unit>
+      <trans-unit id="UkwgzGX" resname="resource.category.children">
+        <source>resource.category.children</source>
+        <target>子类</target>
       </trans-unit>
       <trans-unit id="hYaPf4o" resname="resource.category.root">
         <source>resource.category.root</source>
