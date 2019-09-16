@@ -33,17 +33,10 @@
 $(function() {
   $('table').on('click', '.row-switch-down', function(el) {
     var $el = $(el.currentTarget)
-
     $.get($el.data('url'))
       .done(function(r) {
-        if ('' === $.trim(r)) {
-          $el.prop('disabled', true)
-          return false
-        }
-
         $el.closest('tr').after(r)
-        $el
-          .removeClass('row-switch-down')
+        $el.removeClass('row-switch-down')
           .addClass('row-switch-up')
       })
       .fail(function(r) {
@@ -57,9 +50,7 @@ $(function() {
   $('table').on('click', '.row-switch-up', function(el) {
     var $el = $(el.currentTarget)
     $('.category-parent-' + $el.data('id')).remove()
-
-    $el
-      .removeClass('row-switch-up')
+    $el.removeClass('row-switch-up')
       .addClass('row-switch-down')
   })
 });

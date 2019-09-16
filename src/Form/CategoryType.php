@@ -71,7 +71,7 @@ class CategoryType extends AbstractType
         };
 
         $extendAttribuites = $this->getExtendAttribuites($data);
-        $attributesAttr = function (Attribute $choice, $key, $value) use ($extendAttribuites) {
+        $attributesAttr = function (Attribute $choice) use ($extendAttribuites) {
             return ['disabled' => \in_array($choice, $extendAttribuites, true) ? true : false];
         };
 

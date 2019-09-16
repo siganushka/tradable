@@ -25,6 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ORM\Cache("NONSTRICT_READ_WRITE")
  */
 class Category implements ResourceInterface, SortableInterface, TimestampableInterface, NodeInterface
 {
@@ -34,12 +35,14 @@ class Category implements ResourceInterface, SortableInterface, TimestampableInt
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="children")
+     * @ORM\Cache("NONSTRICT_READ_WRITE")
      */
     private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Category", mappedBy="parent", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"sort": "ASC", "id": "DESC"})
+     * @ORM\Cache("NONSTRICT_READ_WRITE")
      */
     private $children;
 
