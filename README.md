@@ -33,8 +33,8 @@ $ php bin/console doctrine:fixtures:load
 ### install && compress front-end dependencies
 
 ```
-yarn install
-yarn encore production
+$ yarn install
+$ yarn encore production
 ```
 
 ### unit test
