@@ -8,8 +8,8 @@
 
 namespace App\Controller\Admin;
 
-use App\Events;
 use App\Event\UploadedFileEvent;
+use App\Events;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

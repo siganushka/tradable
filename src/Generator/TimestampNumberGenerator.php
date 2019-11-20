@@ -28,10 +28,7 @@ class TimestampNumberGenerator implements OrderNumberGeneratorInterface
      * 6-10 位：第一天中的秒数，从 0 开始，最大 86400
      * 11-16 位：当前系统时间的微秒数（百万分之一秒）
      *
-     *
      * @param Order $order 订单对象
-     *
-     * @return string
      */
     public function generate(Order $order): string
     {

@@ -45,8 +45,7 @@ class CartesianGenerator implements \IteratorAggregate, \Countable
     private function validate($subset, $key)
     {
         if (!\is_array($subset) || empty($subset)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Key "%s" should return a non-empty array', $key));
+            throw new \InvalidArgumentException(sprintf('Key "%s" should return a non-empty array', $key));
         }
     }
 

@@ -9,10 +9,10 @@
 namespace App\Doctrine\EventListener;
 
 use App\Entity\Category;
-use Doctrine\ORM\Events;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Events;
 
 class CategoryCacheEvictSubscriber implements EventSubscriber
 {

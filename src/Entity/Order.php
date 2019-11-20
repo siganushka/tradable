@@ -94,10 +94,7 @@ class Order implements ResourceInterface, TimestampableInterface
     public function setState(string $state): self
     {
         if (!isset(self::$_state[$state])) {
-            throw new \InvalidArgumentException(sprintf(
-                'The state "%s" does not exist. Defined states are: "%s".',
-                $state, implode('", "', array_keys(self::$_state))
-            ));
+            throw new \InvalidArgumentException(sprintf('The state "%s" does not exist. Defined states are: "%s".', $state, implode('", "', array_keys(self::$_state))));
         }
 
         $this->state = $state;
