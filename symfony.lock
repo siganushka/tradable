@@ -315,7 +315,7 @@
         "version": "v1.1.6"
     },
     "symfony/templating": {
-        "version": "v4.3.4"
+        "version": "v4.3.8"
     },
     "symfony/translation": {
         "version": "3.3",
