@@ -40,5 +40,5 @@ $ yarn encore production
 ### unit test
 
 ```
-$ php bin/phpunit
+$ php bin/phpunit --debug
 ```
