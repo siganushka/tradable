@@ -11,7 +11,8 @@ before_script:
     - composer clear-cache
     - composer install
 
-script: vendor/bin/phpunit --debug
+script:
+    - php bin/phpunit --debug
 
 notifications:
     email: false
