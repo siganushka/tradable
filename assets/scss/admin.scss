@@ -30,7 +30,7 @@
 .row-switch-up { background-position-y: -16px; }
 
 .navbar-nav .nav-item.dropdown.no-arrow .dropdown-toggle::after { display: none; }
-.navbar-nav .nav-item .nav-link .badge { font-size: 0.5rem; font-weight: 400; position: absolute; margin-left: 1rem; top: 0.3rem; }
+.navbar-nav .nav-item .nav-link .badge { position: absolute; top: 0.3rem; font-weight: 400; font-size: 0.5rem; }
 
 .navbar .btn,
 .navbar .navbar-brand,
