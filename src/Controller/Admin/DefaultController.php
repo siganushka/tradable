@@ -58,7 +58,7 @@ class DefaultController extends AbstractController implements LoggerAwareInterfa
         $connection->beginTransaction();
 
         try {
-            $entity = $em->getRepository('App\Entity\ProductItem')->find(1, LockMode::PESSIMISTIC_WRITE);
+            $entity = $em->find('App\Entity\ProductItem', 1, LockMode::PESSIMISTIC_WRITE);
         } catch (\Throwable $th) {
             $connection->rollBack();
             $this->logger->debug(sprintf('商品 #%d 正在被其它用户操作 %d！', $entity->getId(), $entity->getQuantity()));
