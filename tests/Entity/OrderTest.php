@@ -6,7 +6,7 @@
  * @author siganushka <siganushka@gmail.com>
  */
 
-namespace App\Tests\Model;
+namespace App\Tests\Entity;
 
 use App\Entity\Order;
 use App\Entity\OrderItem;

@@ -7,8 +7,8 @@ fos_rest:
     view:
         view_response_listener:  true
     exception:
-        codes: ~
-        messages: ~
+        codes: null
+        messages: null
     format_listener:
         rules:
             - { path: ^/%api_prefix%,   fallback_format: json }
