@@ -24,4 +24,4 @@ monolog:
             level:    debug
             type:     stream
             path:     '%kernel.logs_dir%/app.log'
-            channels: [app, doctrine]
+            channels: [app]

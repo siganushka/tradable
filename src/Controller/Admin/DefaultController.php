@@ -75,7 +75,9 @@ class DefaultController extends AbstractController implements LoggerAwareInterfa
         // 减库存
         $entity->setQuantity($entity->getQuantity() - 1);
         $em->flush();
-        $em->commit(); // 必需提交事务，否则其它线程将发生幻读情况
+
+        // 必需提交事务，否则其它线程将发生幻读情况
+        $connection->commit();
 
         $this->logger->debug(sprintf('商品 #%d 减库存成功，剩余 %d！', $entity->getId(), $entity->getQuantity()));
 
