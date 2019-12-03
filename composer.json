@@ -7,7 +7,6 @@
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/orm": "^2.7",
-        "friendsofsymfony/rest-bundle": "^2.6",
         "knplabs/knp-menu-bundle": "^2.3",
         "symfony/asset": "^4.4",
         "symfony/console": "^4.4",
