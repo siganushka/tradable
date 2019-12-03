@@ -8,9 +8,9 @@
 
 namespace App\Event;
 
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class UploadedFileEvent extends Event
 {

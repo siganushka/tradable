@@ -3,8 +3,8 @@ framework:
         order_state:
             type: state_machine
             marking_store:
-                type: single_state
-                arguments: state
+                type: method
+                property: state
             supports: App\Entity\Order
             places:
                 - pending
