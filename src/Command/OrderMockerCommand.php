@@ -45,24 +45,24 @@ class OrderMockerCommand extends Command
 
         $query = $this->entityManager->createQueryBuilder()
             ->select('pi')
-            ->from('App\Entity\ProductItem', 'pi')
+            ->from('App\Entity\ProductVariant', 'pi')
             ->setMaxResults(5)
             ->getQuery();
 
-        $items = $query->getResult();
-        if (!\count($items)) {
-            $io->error('Unable to generate order from empty product items.');
+        $variants = $query->getResult();
+        if (!\count($variants)) {
+            $io->error('Unable to generate order from empty product variants.');
 
             return 0;
         }
 
         for ($i = 0; $i < $count; ++$i) {
-            $rand = mt_rand(0, \count($items) - 1);
+            $rand = mt_rand(0, \count($variants) - 1);
 
             $order = new Order();
             $order->setState(Order::STATE_PENDING);
             for ($j = 0; $j <= $rand; ++$j) {
-                $order->addItem(new OrderItem($items[$j], mt_rand(1, 5)));
+                $order->addItem(new OrderItem($variants[$j], mt_rand(1, 5)));
             }
 
             $this->entityManager->persist($order);

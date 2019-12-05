@@ -181,24 +181,24 @@
         <source>resource.product.option.value.name</source>
         <target>选项名称</target>
       </trans-unit>
-      <trans-unit id="NBgusmo" resname="resource.product.item">
-        <source>resource.product.item</source>
+      <trans-unit id="NBgusmo" resname="resource.product.variant">
+        <source>resource.product.variant</source>
         <target>商品</target>
       </trans-unit>
-      <trans-unit id="OEZ._V5" resname="resource.product.item.name">
-        <source>resource.product.item.name</source>
+      <trans-unit id="OEZ._V5" resname="resource.product.variant.name">
+        <source>resource.product.variant.name</source>
         <target>商品名称</target>
       </trans-unit>
-      <trans-unit id="BA4IVpd" resname="resource.product.item.price">
-        <source>resource.product.item.price</source>
+      <trans-unit id="BA4IVpd" resname="resource.product.variant.price">
+        <source>resource.product.variant.price</source>
         <target>商品价格</target>
       </trans-unit>
-      <trans-unit id="wN6HYBN" resname="resource.product.item.quantity">
-        <source>resource.product.item.quantity</source>
+      <trans-unit id="wN6HYBN" resname="resource.product.variant.quantity">
+        <source>resource.product.variant.quantity</source>
         <target>库存数量</target>
       </trans-unit>
-      <trans-unit id="c2v_Shx" resname="resource.product.item.quantity_untracked">
-        <source>resource.product.item.quantity_untracked</source>
+      <trans-unit id="c2v_Shx" resname="resource.product.variant.quantity_untracked">
+        <source>resource.product.variant.quantity_untracked</source>
         <target>不限</target>
       </trans-unit>
       <trans-unit id="ilbvPPj" resname="resource.order.number">

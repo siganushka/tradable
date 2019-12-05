@@ -61,15 +61,15 @@ class Product implements ResourceInterface, EnableInterface, TimestampableInterf
     private $options;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProductItem", mappedBy="product", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\ProductVariant", mappedBy="product", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"createdAt": "ASC"})
      */
-    private $items;
+    private $variants;
 
     public function __construct()
     {
         $this->options = new ArrayCollection();
-        $this->items = new ArrayCollection();
+        $this->variants = new ArrayCollection();
     }
 
     public function getCategory(): ?Category
@@ -147,27 +147,27 @@ class Product implements ResourceInterface, EnableInterface, TimestampableInterf
         return $this;
     }
 
-    public function getItems(): Collection
+    public function getVariants(): Collection
     {
-        return $this->items;
+        return $this->variants;
     }
 
-    public function addItem(ProductItem $item): self
+    public function addVariant(ProductVariant $variant): self
     {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
-            $item->setProduct($this);
+        if (!$this->variants->contains($variant)) {
+            $this->variants[] = $variant;
+            $variant->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeItem(ProductItem $item): self
+    public function removeVariant(ProductVariant $variant): self
     {
-        if ($this->items->contains($item)) {
-            $this->items->removeElement($item);
-            if ($item->getProduct() === $this) {
-                $item->setProduct(null);
+        if ($this->variants->contains($variant)) {
+            $this->variants->removeElement($variant);
+            if ($variant->getProduct() === $this) {
+                $variant->setProduct(null);
             }
         }
 

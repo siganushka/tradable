@@ -8,26 +8,26 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\ProductItem;
-use App\Repository\ProductItemRepository;
+use App\Entity\ProductVariant;
 use App\Repository\ProductRepository;
+use App\Repository\ProductVariantRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProductItemController extends AbstractController
+class ProductVariantController extends AbstractController
 {
     private $productRepository;
-    private $productItemRepository;
+    private $productVariantRepository;
 
-    public function __construct(ProductRepository $productRepository, ProductItemRepository $productItemRepository)
+    public function __construct(ProductRepository $productRepository, ProductVariantRepository $productVariantRepository)
     {
         $this->productRepository = $productRepository;
-        $this->productItemRepository = $productItemRepository;
+        $this->productVariantRepository = $productVariantRepository;
     }
 
     /**
-     * @Route("/products/{productId}/items", name="admin_product_item", methods="GET")
+     * @Route("/products/{productId}/variants", name="admin_product_variant", methods="GET")
      */
     public function index(string $productId): Response
     {
@@ -36,13 +36,13 @@ class ProductItemController extends AbstractController
             throw $this->createNotFoundException(sprintf('The #%s not found.', $productId));
         }
 
-        return $this->render('admin/product/item.index.html.twig', [
+        return $this->render('admin/product/variant.index.html.twig', [
             'product' => $product,
         ]);
     }
 
     /**
-     * @Route("/products/{productId}/items/new", name="admin_product_item_new", methods="GET|POST")
+     * @Route("/products/{productId}/variants/new", name="admin_product_variant_new", methods="GET|POST")
      */
     public function new(Request $request, string $productId): Response
     {
@@ -51,11 +51,11 @@ class ProductItemController extends AbstractController
             throw $this->createNotFoundException(sprintf('The #%s not found.', $productId));
         }
 
-        $entity = new ProductItem();
+        $entity = new ProductVariant();
         $entity->setProduct($product);
         $entity->setEnabled(true);
 
-        $form = $this->createForm('App\Form\ProductItemType', $entity);
+        $form = $this->createForm('App\Form\ProductVariantType', $entity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,29 +63,29 @@ class ProductItemController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            $this->addTransedMessage('success', 'message.product.item.updated', [
+            $this->addTransedMessage('success', 'message.product.variant.updated', [
                 '%name%' => $entity->getName(),
             ]);
 
-            return $this->redirectToRoute('admin_product_item', ['productId' => $product->getId()]);
+            return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
         }
 
-        return $this->render('admin/product/item.form.html.twig', [
+        return $this->render('admin/product/variant.form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/products/items/{id}/edit", name="admin_product_item_edit", methods="GET|POST")
+     * @Route("/products/variants/{id}/edit", name="admin_product_variant_edit", methods="GET|POST")
      */
     public function edit(Request $request, string $id): Response
     {
-        $entity = $this->productItemRepository->find($id);
+        $entity = $this->productVariantRepository->find($id);
         if (!$entity) {
             throw $this->createNotFoundException(sprintf('The #%s not found.', $id));
         }
 
-        $form = $this->createForm('App\Form\ProductItemType', $entity);
+        $form = $this->createForm('App\Form\ProductVariantType', $entity);
         $form->handleRequest($request);
 
         $product = $entity->getProduct();
@@ -93,24 +93,24 @@ class ProductItemController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            $this->addTransedMessage('success', 'message.product.item.updated', [
+            $this->addTransedMessage('success', 'message.product.variant.updated', [
                 '%name%' => $entity->getName(),
             ]);
 
-            return $this->redirectToRoute('admin_product_item', ['productId' => $product->getId()]);
+            return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
         }
 
-        return $this->render('admin/product/item.form.html.twig', [
+        return $this->render('admin/product/variant.form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/products/items/{id}/delete", name="admin_product_item_delete", methods="GET")
+     * @Route("/products/variants/{id}/delete", name="admin_product_variant_delete", methods="GET")
      */
     public function delete(Request $request, string $id): Response
     {
-        $entity = $this->productItemRepository->find($id);
+        $entity = $this->productVariantRepository->find($id);
         if (!$entity) {
             throw $this->createNotFoundException(sprintf('The #%s not found.', $id));
         }
@@ -119,17 +119,17 @@ class ProductItemController extends AbstractController
         if (!$this->isCsrfTokenValid('delete', $request->query->get('token'))) {
             $this->addTransedMessage('danger', 'csrf_token.invalid');
 
-            return $this->redirectToRoute('admin_product_item', ['productId' => $product->getId()]);
+            return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
         }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($entity);
         $em->flush();
 
-        $this->addTransedMessage('success', 'product.item.deleted', [
+        $this->addTransedMessage('success', 'product.variant.deleted', [
             '%name%' => $entity->getName(),
         ]);
 
-        return $this->redirectToRoute('admin_product_item', ['productId' => $product->getId()]);
+        return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
     }
 }

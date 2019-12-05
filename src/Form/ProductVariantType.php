@@ -8,7 +8,7 @@
 
 namespace App\Form;
 
-use App\Entity\ProductItem;
+use App\Entity\ProductVariant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class ProductItemType extends AbstractType
+class ProductVariantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -31,7 +31,7 @@ class ProductItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'class' => ProductItem::class,
+            'class' => ProductVariant::class,
             'attr' => ['novalidate' => 'novalidate'],
         ]);
     }
@@ -45,19 +45,19 @@ class ProductItemType extends AbstractType
 
         $event->getForm()
             ->add('name', TextType::class, [
-                'label' => 'resource.product.item.name',
+                'label' => 'resource.product.variant.name',
                 'attr' => ['autofocus' => true],
                 'constraints' => new NotBlank(),
             ])
             ->add('price', MoneyType::class, [
-                'label' => 'resource.product.item.price',
+                'label' => 'resource.product.variant.price',
                 'currency' => 'CNY',
                 'divisor' => 100,
                 'constraints' => new NotBlank(),
             ])
             ->add('quantity', IntegerType::class, [
-                'label' => 'resource.product.item.quantity',
-                'attr' => ['placeholder' => 'resource.product.item.quantity_untracked'],
+                'label' => 'resource.product.variant.quantity',
+                'attr' => ['placeholder' => 'resource.product.variant.quantity_untracked'],
                 'constraints' => new GreaterThanOrEqual(0),
             ])
             ->add('enabled', CheckboxType::class, [

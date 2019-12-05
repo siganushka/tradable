@@ -9,20 +9,20 @@
 namespace App\Tests\Entity;
 
 use App\Entity\OrderItem;
-use App\Entity\ProductItem;
+use App\Entity\ProductVariant;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class OrderItemTest extends WebTestCase
 {
     public function testOrderItem()
     {
-        $item = new ProductItem();
-        $item->setName('test');
-        $item->setPrice(50);
+        $variant = new ProductVariant();
+        $variant->setName('test');
+        $variant->setPrice(50);
 
-        $orderItem = new OrderItem($item, 3);
+        $orderItem = new OrderItem($variant, 3);
 
-        $this->assertEquals($item, $orderItem->getItem());
+        $this->assertEquals($variant, $orderItem->getVariant());
         $this->assertEquals(50, $orderItem->getPrice());
         $this->assertEquals(3, $orderItem->getQuantity());
         $this->assertEquals(150, $orderItem->getSubtotal());

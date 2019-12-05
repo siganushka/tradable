@@ -19,29 +19,29 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProductItemRepository")
- * @App\Validator\UniqueProductItem
+ * @ORM\Entity(repositoryClass="App\Repository\ProductVariantRepository")
+ * @App\Validator\UniqueProductVariant
  */
-class ProductItem implements ResourceInterface, EnableInterface, TimestampableInterface
+class ProductVariant implements ResourceInterface, EnableInterface, TimestampableInterface
 {
     use ResourceTrait;
-    use ProductItemTrait;
+    use ProductVariantTrait;
     use EnableTrait;
     use TimestampableTrait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="variants")
      */
     private $product;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ProductOptionValue", inversedBy="items")
-     * @ORM\JoinTable(name="product_item_option_value")
+     * @ORM\ManyToMany(targetEntity="ProductOptionValue", inversedBy="variants")
+     * @ORM\JoinTable(name="product_variant_option_value")
      */
     private $optionValues;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="item")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="variant")
      */
     private $orderItems;
 

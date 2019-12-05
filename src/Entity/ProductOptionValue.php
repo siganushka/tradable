@@ -41,14 +41,14 @@ class ProductOptionValue implements ResourceInterface, SortableInterface, Timest
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ProductItem", mappedBy="optionValues")
+     * @ORM\ManyToMany(targetEntity="App\Entity\ProductVariant", mappedBy="optionValues")
      */
-    private $items;
+    private $variants;
 
     public function __construct(string $name = null)
     {
         $this->name = $name;
-        $this->items = new ArrayCollection();
+        $this->variants = new ArrayCollection();
     }
 
     public function getOption(): ?ProductOption
@@ -75,26 +75,26 @@ class ProductOptionValue implements ResourceInterface, SortableInterface, Timest
         return $this;
     }
 
-    public function getItems(): Collection
+    public function getVariants(): Collection
     {
-        return $this->items;
+        return $this->variants;
     }
 
-    public function addItem(ProductItem $item): self
+    public function addVariant(ProductVariant $variant): self
     {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
-            $item->addOptionValue($this);
+        if (!$this->variants->contains($variant)) {
+            $this->variants[] = $variant;
+            $variant->addOptionValue($this);
         }
 
         return $this;
     }
 
-    public function removeItem(ProductItem $item): self
+    public function removeVariant(ProductVariant $variant): self
     {
-        if ($this->items->contains($item)) {
-            $this->items->removeElement($item);
-            $item->removeOptionValue($this);
+        if ($this->variants->contains($variant)) {
+            $this->variants->removeElement($variant);
+            $variant->removeOptionValue($this);
         }
 
         return $this;

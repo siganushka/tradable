@@ -35,7 +35,7 @@ class DefaultController extends AbstractController implements LoggerAwareInterfa
      */
     public function testNoLock(EntityManagerInterface $em)
     {
-        $entity = $em->getRepository('App\Entity\ProductItem')->find(1);
+        $entity = $em->getRepository('App\Entity\ProductVariant')->find(1);
 
         if ($entity->getQuantity() <= 0) {
             $this->logger->debug(sprintf('商品 #%d 库存不足 %d！', $entity->getId(), $entity->getQuantity()));
@@ -60,7 +60,7 @@ class DefaultController extends AbstractController implements LoggerAwareInterfa
         $em->beginTransaction();
 
         try {
-            $entity = $em->find('App\Entity\ProductItem', 1, LockMode::PESSIMISTIC_WRITE);
+            $entity = $em->find('App\Entity\ProductVariant', 1, LockMode::PESSIMISTIC_WRITE);
         } catch (\Throwable $th) {
             $em->rollBack();
             $this->logger->debug('商品正在被其它用户操作！');
@@ -102,7 +102,7 @@ class DefaultController extends AbstractController implements LoggerAwareInterfa
         $lock = $factory->createLock(sprintf('product_%d', $id), 5);
         $lock->acquire(true);
 
-        $entity = $em->find('App\Entity\ProductItem', $id);
+        $entity = $em->find('App\Entity\ProductVariant', $id);
 
         if ($entity->getQuantity() <= 0) {
             // 如果中途任何一步退出，则提前释放锁

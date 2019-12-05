@@ -10,23 +10,23 @@ namespace App\Tests\Entity;
 
 use App\Entity\Order;
 use App\Entity\OrderItem;
-use App\Entity\ProductItem;
+use App\Entity\ProductVariant;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class OrderTest extends WebTestCase
 {
     public function testOrder()
     {
-        $item1 = new ProductItem();
-        $item1->setName('product item 1');
-        $item1->setPrice(10);
+        $variant1 = new ProductVariant();
+        $variant1->setName('product variant 1');
+        $variant1->setPrice(10);
 
-        $item2 = new ProductItem();
-        $item2->setName('product item 2');
-        $item2->setPrice(20);
+        $variant2 = new ProductVariant();
+        $variant2->setName('product variant 2');
+        $variant2->setPrice(20);
 
-        $orderItem1 = new OrderItem($item1, 3);
-        $orderItem2 = new OrderItem($item2, 5);
+        $orderItem1 = new OrderItem($variant1, 3);
+        $orderItem2 = new OrderItem($variant2, 5);
 
         $order = new Order();
         $this->assertCount(0, $order->getItems());

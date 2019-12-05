@@ -8,14 +8,14 @@
 
 namespace App\Repository;
 
-use App\Entity\ProductItem;
+use App\Entity\ProductVariant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class ProductItemRepository extends ServiceEntityRepository
+class ProductVariantRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ProductItem::class);
+        parent::__construct($registry, ProductVariant::class);
     }
 }

@@ -10,7 +10,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-trait ProductItemTrait
+trait ProductVariantTrait
 {
     /**
      * @ORM\Column(type="string")

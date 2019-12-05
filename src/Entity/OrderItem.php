@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 class OrderItem implements ResourceInterface
 {
     use ResourceTrait;
-    use ProductItemTrait;
+    use ProductVariantTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="items")
@@ -26,15 +26,15 @@ class OrderItem implements ResourceInterface
     private $order;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ProductItem", inversedBy="orderItems")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProductVariant", inversedBy="orderItems")
      */
-    private $item;
+    private $variant;
 
-    public function __construct(ProductItem $item, int $quantity)
+    public function __construct(ProductVariant $variant, int $quantity)
     {
-        $this->item = $item;
-        $this->name = $item->getName();
-        $this->price = $item->getPrice();
+        $this->variant = $variant;
+        $this->name = $variant->getName();
+        $this->price = $variant->getPrice();
         $this->quantity = $quantity;
     }
 
@@ -50,9 +50,9 @@ class OrderItem implements ResourceInterface
         return $this;
     }
 
-    public function getItem(): ProductItem
+    public function getVariant(): ProductVariant
     {
-        return $this->item;
+        return $this->variant;
     }
 
     public function getSubtotal(): int

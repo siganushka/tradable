@@ -8,28 +8,28 @@
 
 namespace App\Validator;
 
-use App\Entity\ProductItem;
+use App\Entity\ProductVariant;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class UniqueProductItemValidator extends ConstraintValidator
+class UniqueProductVariantValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (!$value instanceof ProductItem) {
-            throw new UnexpectedTypeException($constraint, ProductItem::class);
+        if (!$value instanceof ProductVariant) {
+            throw new UnexpectedTypeException($constraint, ProductVariant::class);
         }
 
         $tokens = [];
         $curret = $value->getOptionValuesToken();
 
-        foreach ($value->getProduct()->getItems() as $item) {
-            if ($curret === $token = $item->getOptionValuesToken()) {
+        foreach ($value->getProduct()->getVariants() as $variant) {
+            if ($curret === $token = $variant->getOptionValuesToken()) {
                 if ($value->isNew()) {
                     array_push($tokens, $token);
                 } else {
-                    if (!$item->isEqual($value)) {
+                    if (!$variant->isEqual($value)) {
                         array_push($tokens, $token);
                     }
                 }

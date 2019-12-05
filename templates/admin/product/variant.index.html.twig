@@ -4,22 +4,22 @@
 
   <div class="mb-3">
     <a href="{{ path('admin_product') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
-    <a href="{{ path('admin_product_item_new', {productId: product.id}) }}" class="btn btn-primary">{{ 'app.action.new'|trans }}</a>
+    <a href="{{ path('admin_product_variant_new', {productId: product.id}) }}" class="btn btn-primary">{{ 'app.action.new'|trans }}</a>
   </div>
 
   {{ include('admin/flashes.html.twig') }}
 
   <table class="table">
     <tr>
-      <th>{{ 'resource.product.item.name'|trans }}</th>
-      <th>{{ 'resource.product.item.price'|trans }}</th>
+      <th>{{ 'resource.product.variant.name'|trans }}</th>
+      <th>{{ 'resource.product.variant.price'|trans }}</th>
       <th>{{ 'resource.product.unit'|trans }}</th>
-      <th>{{ 'resource.product.item.quantity'|trans }}</th>
+      <th>{{ 'resource.product.variant.quantity'|trans }}</th>
       <th>{{ 'app.enabled'|trans }}</th>
       <th>{{ 'app.created_at'|trans }}</th>
       <th>{{ 'app.action'|trans }}</th>
     </tr>
-    {% for entity in product.items %}
+    {% for entity in product.variants %}
     <tr>
       <td>
         {{ entity.name }}
@@ -29,12 +29,12 @@
       </td>
       <td>{{ entity.price|price }}</td>
       <td>{{ entity.product.unit }}</td>
-      <td>{{ entity.quantity|default('resource.product.item.quantity_untracked'|trans) }}</td>
+      <td>{{ entity.quantity|default('resource.product.variant.quantity_untracked'|trans) }}</td>
       <td>{{ entity|enable }}</td>
       <td>{{ entity.createdAt|datetimeable }}</td>
       <td>
-        <a href="{{ path('admin_product_item_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
-        <a href="{{ path('admin_product_item_delete', {id: entity.id, token: csrf_token('delete')}) }}">{{ 'app.action.delete'|trans }}</a>
+        <a href="{{ path('admin_product_variant_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
+        <a href="{{ path('admin_product_variant_delete', {id: entity.id, token: csrf_token('delete')}) }}">{{ 'app.action.delete'|trans }}</a>
       </td>
     </tr>
     {% else %}

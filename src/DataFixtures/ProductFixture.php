@@ -9,9 +9,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\Product;
-use App\Entity\ProductItem;
 use App\Entity\ProductOption;
 use App\Entity\ProductOptionValue;
+use App\Entity\ProductVariant;
 use App\Generator\CartesianGenerator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -95,10 +95,10 @@ class ProductFixture extends Fixture
         $manager->persist($product3);
         $manager->persist($product4);
 
-        $this->generateItems($product1);
-        $this->generateItems($product2);
-        $this->generateItems($product3);
-        $this->generateItems($product4);
+        $this->generateVariants($product1);
+        $this->generateVariants($product2);
+        $this->generateVariants($product3);
+        $this->generateVariants($product4);
 
         $manager->flush();
 
@@ -108,7 +108,7 @@ class ProductFixture extends Fixture
         $this->addReference('product4', $product4);
     }
 
-    private function generateItems(Product $product)
+    private function generateVariants(Product $product)
     {
         $groups = [];
         foreach ($product->getOptions() as $option) {
@@ -118,12 +118,12 @@ class ProductFixture extends Fixture
         }
 
         foreach (new CartesianGenerator($groups) as $optionValues) {
-            $item = new ProductItem();
-            $item->setPrice(mt_rand(100, 999) * 100);
-            $item->setQuantity(mt_rand(1, 10));
-            $item->setEnabled(true);
-            $item->setOptionValues($optionValues);
-            $product->addItem($item);
+            $variant = new ProductVariant();
+            $variant->setPrice(mt_rand(100, 999) * 100);
+            $variant->setQuantity(mt_rand(1, 10));
+            $variant->setEnabled(true);
+            $variant->setOptionValues($optionValues);
+            $product->addVariant($variant);
         }
     }
 }

@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class UniqueProductItem extends Constraint
+class UniqueProductVariant extends Constraint
 {
     public $message = 'This value is already used.';
     public $errorPath = 'optionValues';
