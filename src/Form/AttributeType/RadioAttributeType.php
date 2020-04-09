@@ -63,4 +63,9 @@ class RadioAttributeType extends AttributeType
 
         return $options;
     }
+
+    public function getAlias(): string
+    {
+        return 'radio';
+    }
 }

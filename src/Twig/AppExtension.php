@@ -8,6 +8,7 @@
 
 namespace App\Twig;
 
+use Siganushka\GenericBundle\Model\EnableInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -28,7 +29,7 @@ class AppExtension extends AbstractExtension
         return number_format($amount / 100, $decimals, $decPoint, $thousandsSep);
     }
 
-    public function enableFilter(\App\Model\EnableInterface $subject)
+    public function enableFilter(EnableInterface $subject)
     {
         return $subject->isEnabled()
             ? '<span class="badge badge-pill badge-success">Y</span>'

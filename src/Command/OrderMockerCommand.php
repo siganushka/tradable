@@ -71,5 +71,7 @@ class OrderMockerCommand extends Command
         $this->entityManager->flush();
 
         $io->success(sprintf('The %d rows mock data for order has been genearted.', $count));
+
+        return 0;
     }
 }

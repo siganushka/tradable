@@ -8,30 +8,21 @@
 
 namespace App\DependencyInjection\Compiler;
 
-use App\Registry\AttributeTypeRegistryInterface;
+use App\Registry\AttributeTypeRegistry;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 class AddAttributeTypePass implements CompilerPassInterface
 {
-    private $attributeTypeTag;
-
-    public function __construct(string $attributeTypeTag = 'app.attribute_type')
-    {
-        $this->attributeTypeTag = $attributeTypeTag;
-    }
+    const TAG_NAME = 'app.attribute_type';
 
     public function process(ContainerBuilder $container)
     {
-        $definition = $container->findDefinition(AttributeTypeRegistryInterface::class);
-        foreach ($container->findTaggedServiceIds($this->attributeTypeTag) as $id => $attributes) {
+        $definition = $container->findDefinition(AttributeTypeRegistry::class);
+        foreach ($container->findTaggedServiceIds(self::TAG_NAME) as $id => $attributes) {
             foreach ($attributes as $attribute) {
-                if (!isset($attribute['alias'])) {
-                    throw new \InvalidArgumentException(sprintf('Service "%s" must define the "alias" attribute on "%s" tags.', $id, $this->attributeTypeTag));
-                }
-
-                $definition->addMethodCall('register', [$attribute['alias'], new Reference($id)]);
+                $definition->addMethodCall('register', [new Reference($id)]);
             }
         }
     }

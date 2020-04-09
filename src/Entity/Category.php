@@ -10,16 +10,16 @@ namespace App\Entity;
 
 use App\Exception\CategoryDescendantConflictException;
 use App\Exception\CategoryParentConflictException;
-use App\Model\ResourceInterface;
-use App\Model\ResourceTrait;
-use App\Model\SortableInterface;
-use App\Model\SortableTrait;
-use App\Model\TimestampableInterface;
-use App\Model\TimestampableTrait;
 use App\Tree\NodeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Siganushka\GenericBundle\Model\ResourceInterface;
+use Siganushka\GenericBundle\Model\ResourceTrait;
+use Siganushka\GenericBundle\Model\SortableInterface;
+use Siganushka\GenericBundle\Model\SortableTrait;
+use Siganushka\GenericBundle\Model\TimestampableInterface;
+use Siganushka\GenericBundle\Model\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -88,7 +88,7 @@ class Category implements ResourceInterface, SortableInterface, TimestampableInt
 
     public function setParent(?self $parent): self
     {
-        if ($parent && $parent->isEqual($this) && !$parent->isNew()) {
+        if ($parent && $parent->isEqualTo($this) && !$parent->isNew()) {
             throw new CategoryParentConflictException($this, $parent);
         }
 
@@ -193,7 +193,7 @@ class Category implements ResourceInterface, SortableInterface, TimestampableInt
 
         $siblings = [];
         foreach ($this->getParent()->getChildren() as $child) {
-            if ($includeSelf || !$this->isEqual($child)) {
+            if ($includeSelf || !$this->isEqualTo($child)) {
                 $siblings[] = $child;
             }
         }

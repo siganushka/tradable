@@ -1,44 +1,43 @@
+# 如何安装？
 
-# How to install ?
+### 克隆项目
 
-### clone && configuration
-
-```
+```bash
 $ git clone https://github.com/siganushka/tradable.git
 $ cd ./tradable
-$ cp .env .env.local
-
 ```
 
-> configuration ``.env.local``
+### 安装项目
 
-```
-DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name
-```
-
-### install dependencies
-
-```
+```bash
 $ composer install
 ```
 
-### create database && table && fixtures
+### 配置参数
 
-```
-$ php bin/console doctrine:database:create
-$ php bin/console doctrine:schema:update --force
-$ php bin/console doctrine:fixtures:load
+```bash
+$ composer dump-env {ENV} # ENV 为当前环境，可选为 dev, test, prod
 ```
 
-### install && compress front-end dependencies
+> 打开 ``.env.local.php`` 文件修改项目所需参数，比如数据库信息
 
-```
-$ yarn install
-$ yarn encore production
+### 创建数据库
+
+```bash
+$ php bin/console doctrine:database:create # 创建数据库
+$ php bin/console doctrine:schema:update --force # 创建表结构
+$ php bin/console doctrine:fixtures:load # 生成测试数据（可选）
 ```
 
-### unit test
+### 前端依赖
 
+```bash
+$ yarn install # 安装前端依赖
+$ yarn encore production # 打包压缩前端依赖（javascript, css, img...）
 ```
-$ php bin/phpunit --debug
+
+### 单元测试
+
+```bash
+$ php bin/phpunit --debug # 执行单元测试
 ```

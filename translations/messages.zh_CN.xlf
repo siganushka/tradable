@@ -81,24 +81,24 @@
         <source>resource.attribute.type</source>
         <target>属性类型</target>
       </trans-unit>
-      <trans-unit id="1IxrBpQ" resname="resource.attribute.type.text_attribute">
-        <source>resource.attribute.type.text_attribute</source>
+      <trans-unit id="YlJOkho" resname="resource.attribute.type.text">
+        <source>resource.attribute.type.text</source>
         <target>单行文本</target>
       </trans-unit>
-      <trans-unit id="w1tnO.w" resname="resource.attribute.type.textarea_attribute">
-        <source>resource.attribute.type.textarea_attribute</source>
+      <trans-unit id="YfYRCEO" resname="resource.attribute.type.textarea">
+        <source>resource.attribute.type.textarea</source>
         <target>多行文本</target>
       </trans-unit>
-      <trans-unit id="NEo9.XY" resname="resource.attribute.type.radio_attribute">
-        <source>resource.attribute.type.radio_attribute</source>
+      <trans-unit id="AOSDfLo" resname="resource.attribute.type.radio">
+        <source>resource.attribute.type.radio</source>
         <target>单选</target>
       </trans-unit>
-      <trans-unit id="ULFipKW" resname="resource.attribute.type.checkbox_attribute">
-        <source>resource.attribute.type.checkbox_attribute</source>
+      <trans-unit id="kOA7tUE" resname="resource.attribute.type.checkbox">
+        <source>resource.attribute.type.checkbox</source>
         <target>多选</target>
       </trans-unit>
-      <trans-unit id="YE5PbVN" resname="resource.attribute.type.select_attribute">
-        <source>resource.attribute.type.select_attribute</source>
+      <trans-unit id="Z2dPdge" resname="resource.attribute.type.select">
+        <source>resource.attribute.type.select</source>
         <target>下拉列表</target>
       </trans-unit>
       <trans-unit id="yehU0FB" resname="resource.attribute.configuration">
@@ -181,23 +181,23 @@
         <source>resource.product.option.value.name</source>
         <target>选项名称</target>
       </trans-unit>
-      <trans-unit id="NBgusmo" resname="resource.product.variant">
+      <trans-unit id="LjsFEhm" resname="resource.product.variant">
         <source>resource.product.variant</source>
         <target>商品</target>
       </trans-unit>
-      <trans-unit id="OEZ._V5" resname="resource.product.variant.name">
+      <trans-unit id=".r4WbN3" resname="resource.product.variant.name">
         <source>resource.product.variant.name</source>
         <target>商品名称</target>
       </trans-unit>
-      <trans-unit id="BA4IVpd" resname="resource.product.variant.price">
+      <trans-unit id="RHFDDyu" resname="resource.product.variant.price">
         <source>resource.product.variant.price</source>
         <target>商品价格</target>
       </trans-unit>
-      <trans-unit id="wN6HYBN" resname="resource.product.variant.quantity">
+      <trans-unit id="RZQT_kd" resname="resource.product.variant.quantity">
         <source>resource.product.variant.quantity</source>
         <target>库存数量</target>
       </trans-unit>
-      <trans-unit id="c2v_Shx" resname="resource.product.variant.quantity_untracked">
+      <trans-unit id="A8KCBgH" resname="resource.product.variant.quantity_untracked">
         <source>resource.product.variant.quantity_untracked</source>
         <target>不限</target>
       </trans-unit>

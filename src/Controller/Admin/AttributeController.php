@@ -9,7 +9,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Attribute;
-use App\Registry\AttributeTypeRegistryInterface;
+use App\Registry\AttributeTypeRegistry;
 use App\Repository\AttributeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,13 +27,13 @@ class AttributeController extends AbstractController
     /**
      * @Route("/attributes", name="admin_attribute", methods="GET")
      */
-    public function index(AttributeTypeRegistryInterface $registry): Response
+    public function index(AttributeTypeRegistry $registry): Response
     {
         $entities = $this->attributeRepository->findAll();
 
         return $this->render('admin/attribute/index.html.twig', [
             'entities' => $entities,
-            'types' => $registry->all(),
+            'types' => $registry->keys(),
         ]);
     }
 

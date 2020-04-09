@@ -10,7 +10,7 @@ namespace App\Generator;
 
 use App\Entity\Order;
 
-class TimestampNumberGenerator implements OrderNumberGeneratorInterface
+class OrderNumberGenerator implements OrderNumberGeneratorInterface
 {
     /**
      * 生成订单号，单机下重复概率为百万分之一，为了保证最小长度和相对唯一，将符合以下特征

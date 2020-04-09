@@ -9,7 +9,7 @@
 namespace App\Form;
 
 use App\Entity\Attribute;
-use App\Registry\AttributeTypeRegistryInterface;
+use App\Registry\AttributeTypeRegistry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +22,7 @@ class AttributeType extends AbstractType
 {
     private $registry;
 
-    public function __construct(AttributeTypeRegistryInterface $registry)
+    public function __construct(AttributeTypeRegistry $registry)
     {
         $this->registry = $registry;
     }

@@ -12,8 +12,4 @@ use Symfony\Component\Form\AbstractType;
 
 abstract class AttributeType extends AbstractType implements AttributeTypeInterface
 {
-    public function getLabel(): string
-    {
-        return sprintf('resource.attribute.type.%s', $this->getBlockPrefix());
-    }
 }

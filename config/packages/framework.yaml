@@ -15,13 +15,5 @@ framework:
     php_errors:
         log: true
 
-    serializer:
-        name_converter: serializer.name_converter.camel_case_to_snake_case
-
-monolog:
-    handlers:
-        app:
-            level:    debug
-            type:     stream
-            path:     '%kernel.logs_dir%/app.log'
-            channels: [app]
+siganushka_generic:
+    table_prefix: tb_

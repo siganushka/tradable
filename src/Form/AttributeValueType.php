@@ -8,7 +8,7 @@
 
 namespace App\Form;
 
-use App\Registry\AttributeTypeRegistryInterface;
+use App\Registry\AttributeTypeRegistry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +17,7 @@ class AttributeValueType extends AbstractType
 {
     private $registry;
 
-    public function __construct(AttributeTypeRegistryInterface $registry)
+    public function __construct(AttributeTypeRegistry $registry)
     {
         $this->registry = $registry;
     }

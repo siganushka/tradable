@@ -69,4 +69,9 @@ class TextareaAttributeType extends AttributeType
 
         return $options;
     }
+
+    public function getAlias(): string
+    {
+        return 'textarea';
+    }
 }

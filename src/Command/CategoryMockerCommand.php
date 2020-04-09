@@ -68,5 +68,7 @@ class CategoryMockerCommand extends Command
         $this->entityManager->flush();
 
         $io->success(sprintf('The %d rows mock data for category has been genearted.', $count));
+
+        return 0;
     }
 }

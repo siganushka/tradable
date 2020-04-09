@@ -10,9 +10,9 @@ namespace App\Tests\Entity;
 
 use App\Entity\OrderItem;
 use App\Entity\ProductVariant;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\TestCase;
 
-class OrderItemTest extends WebTestCase
+class OrderItemTest extends TestCase
 {
     public function testOrderItem()
     {

@@ -9,7 +9,6 @@
 namespace App\Controller\Admin;
 
 use App\Event\UploadedFileEvent;
-use App\Events;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -27,13 +26,13 @@ class FileManagerController extends AbstractController
     }
 
     /**
-     * @Route("/files", name="admin_file", methods="GET")
+     * @Route("/files", name="admin_file", methods={"GET", "POST"})
      */
     public function index(Request $request): Response
     {
         $data = [
-            // 'img1' => 'http://tradable.example.com/upload/2985c930041ad72f.jpeg',
-            // 'img2' => 'http://tradable.example.com/upload/2985c930041ad72f.jpeg',
+            // 'img1' => 'http://tradable.example.com/upload/product/6785e8f16256a34b.jpeg',
+            // 'img2' => 'http://tradable.example.com/upload/product/6785e8f16256a34b.jpeg',
         ];
 
         $form = $this->createFormBuilder($data)
@@ -75,7 +74,7 @@ class FileManagerController extends AbstractController
         }
 
         $event = new UploadedFileEvent($file, $uploadedFile);
-        $this->dispatcher->dispatch(Events::UPLOADED_FILE, $event);
+        $this->dispatcher->dispatch($event);
 
         if (!$event->isPropagationStopped()) {
             return $this->json(['message' => 'No listeners was found.'], 400);

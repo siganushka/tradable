@@ -10,7 +10,7 @@ namespace App\Repository;
 
 use App\Entity\ProductVariant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ProductVariantRepository extends ServiceEntityRepository
 {

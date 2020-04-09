@@ -8,9 +8,9 @@
 
 namespace App\Entity;
 
-use App\Model\ResourceInterface;
-use App\Model\ResourceTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Siganushka\GenericBundle\Model\ResourceInterface;
+use Siganushka\GenericBundle\Model\ResourceTrait;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderItemRepository")

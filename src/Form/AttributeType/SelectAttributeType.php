@@ -61,4 +61,9 @@ class SelectAttributeType extends AttributeType
 
         return $options;
     }
+
+    public function getAlias(): string
+    {
+        return 'select';
+    }
 }

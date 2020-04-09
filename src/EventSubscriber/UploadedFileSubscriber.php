@@ -6,14 +6,13 @@
  * @author siganushka <siganushka@gmail.com>
  */
 
-namespace App\EventListener;
+namespace App\EventSubscriber;
 
 use App\Event\UploadedFileEvent;
-use App\Events;
 use App\Util\FileUtils;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class UploadedFileListener implements EventSubscriberInterface
+class UploadedFileSubscriber implements EventSubscriberInterface
 {
     private $fileUtils;
 
@@ -22,7 +21,7 @@ class UploadedFileListener implements EventSubscriberInterface
         $this->fileUtils = $fileUtils;
     }
 
-    public function onUploadedFile(UploadedFileEvent $event)
+    public function onUploadedFileEvent(UploadedFileEvent $event)
     {
         $file = $event->getFile();
 
@@ -39,7 +38,7 @@ class UploadedFileListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            Events::UPLOADED_FILE => 'onUploadedFile',
+            UploadedFileEvent::class => 'onUploadedFileEvent',
         ];
     }
 }

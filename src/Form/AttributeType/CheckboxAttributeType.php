@@ -75,4 +75,9 @@ class CheckboxAttributeType extends AttributeType
 
         return $options;
     }
+
+    public function getAlias(): string
+    {
+        return 'checkbox';
+    }
 }

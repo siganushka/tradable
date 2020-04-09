@@ -10,7 +10,7 @@ namespace App\Repository;
 
 use App\Entity\ProductOptionValue;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ProductOptionValueRepository extends ServiceEntityRepository
 {

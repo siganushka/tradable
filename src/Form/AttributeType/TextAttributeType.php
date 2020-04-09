@@ -62,4 +62,9 @@ class TextAttributeType extends AttributeType
 
         return $options;
     }
+
+    public function getAlias(): string
+    {
+        return 'text';
+    }
 }

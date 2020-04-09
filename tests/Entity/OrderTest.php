@@ -11,9 +11,9 @@ namespace App\Tests\Entity;
 use App\Entity\Order;
 use App\Entity\OrderItem;
 use App\Entity\ProductVariant;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\TestCase;
 
-class OrderTest extends WebTestCase
+class OrderTest extends TestCase
 {
     public function testOrder()
     {

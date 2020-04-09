@@ -6,9 +6,9 @@
   <td>
     {{- '&nbsp;'|str_repeat(entity.depth * 5) -}}
 
-    {%- if entity.isEqual(_first) -%}
+    {%- if entity.isEqualTo(_first) -%}
     ┌
-    {%- elseif entity.isEqual(_last) -%}
+    {%- elseif entity.isEqualTo(_last) -%}
     └
     {%- else -%}
     ├

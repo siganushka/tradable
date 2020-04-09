@@ -8,13 +8,13 @@
 
 namespace App\Entity;
 
-use App\Model\ResourceInterface;
-use App\Model\ResourceTrait;
-use App\Model\TimestampableInterface;
-use App\Model\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Siganushka\GenericBundle\Model\ResourceInterface;
+use Siganushka\GenericBundle\Model\ResourceTrait;
+use Siganushka\GenericBundle\Model\TimestampableInterface;
+use Siganushka\GenericBundle\Model\TimestampableTrait;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")

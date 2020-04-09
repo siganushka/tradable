@@ -10,8 +10,8 @@
           {{ 'app.action.new'|trans }}
         </button>
         <div class="dropdown-menu">
-          {% for alias, type in types %}
-            <a href="{{ path('admin_attribute_new', {type: alias}) }}" class="dropdown-item">{{ type.label|trans }}</a>
+          {% for type in types %}
+            <a href="{{ path('admin_attribute_new', {type: type}) }}" class="dropdown-item">{{ ('resource.attribute.type.' ~ type)|trans }}</a>
           {% endfor %}
         </div>
       </div>

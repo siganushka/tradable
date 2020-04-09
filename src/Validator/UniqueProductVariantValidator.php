@@ -29,7 +29,7 @@ class UniqueProductVariantValidator extends ConstraintValidator
                 if ($value->isNew()) {
                     array_push($tokens, $token);
                 } else {
-                    if (!$variant->isEqual($value)) {
+                    if (!$variant->isEqualTo($value)) {
                         array_push($tokens, $token);
                     }
                 }
