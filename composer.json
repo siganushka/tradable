@@ -8,7 +8,7 @@
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/orm": "^2.7",
         "knplabs/knp-menu-bundle": "^3.0",
-        "siganushka/generic-bundle": "dev-master",
+        "siganushka/generic-bundle": "^0.1.0",
         "symfony/asset": "5.0.*",
         "symfony/console": "5.0.*",
         "symfony/dotenv": "5.0.*",
