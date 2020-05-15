@@ -12,7 +12,7 @@ use App\Entity\Product;
 use App\Entity\ProductOption;
 use App\Entity\ProductOptionValue;
 use App\Entity\ProductVariant;
-use App\Generator\CartesianGenerator;
+use BenTools\CartesianProduct\CartesianProduct;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -117,7 +117,7 @@ class ProductFixture extends Fixture
             }
         }
 
-        foreach (new CartesianGenerator($groups) as $optionValues) {
+        foreach (new CartesianProduct($groups) as $optionValues) {
             $variant = new ProductVariant();
             $variant->setPrice(mt_rand(100, 999) * 100);
             $variant->setQuantity(mt_rand(1, 10));

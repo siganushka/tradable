@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "bentools/cartesian-product": "^1.3",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/orm": "^2.7",
         "knplabs/knp-menu-bundle": "^3.0",
