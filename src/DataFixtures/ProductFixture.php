@@ -14,7 +14,7 @@ use App\Entity\ProductOptionValue;
 use App\Entity\ProductVariant;
 use BenTools\CartesianProduct\CartesianProduct;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 class ProductFixture extends Fixture
 {

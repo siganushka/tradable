@@ -261,6 +261,10 @@
         <source>admin.menu.order</source>
         <target>订单</target>
       </trans-unit>
+      <trans-unit id="qGz0NQD" resname="admin.menu.file">
+        <source>admin.menu.file</source>
+        <target>文件</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -39,6 +39,9 @@ class Builder
         $menu->addChild('admin.menu.order', ['route' => 'admin_order'])
             ->setExtra('icon', 'fas fa-shopping-cart');
 
+        $menu->addChild('admin.menu.file', ['route' => 'admin_file'])
+            ->setExtra('icon', 'fas fa-cloud-upload-alt');
+
         foreach ($menu->getChildren() as $child) {
             $child
                 ->setAttribute('class', 'nav-item')
