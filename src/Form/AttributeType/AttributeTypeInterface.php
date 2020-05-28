@@ -9,10 +9,10 @@
 namespace App\Form\AttributeType;
 
 use App\Entity\Attribute;
-use Siganushka\GenericBundle\Registry\AliasableServiceInterface;
+use Siganushka\GenericBundle\Registry\AliasableInterface;
 use Symfony\Component\Form\FormTypeInterface;
 
-interface AttributeTypeInterface extends FormTypeInterface, AliasableServiceInterface
+interface AttributeTypeInterface extends FormTypeInterface, AliasableInterface
 {
     public function getConfigurationType(): string;
 
