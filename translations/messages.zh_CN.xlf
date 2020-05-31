@@ -257,6 +257,10 @@
         <source>admin.menu.product</source>
         <target>产品</target>
       </trans-unit>
+      <trans-unit id=".OX8IL_" resname="admin.menu.variant">
+        <source>admin.menu.variant</source>
+        <target>库存</target>
+      </trans-unit>
       <trans-unit id="QlKvjtr" resname="admin.menu.order">
         <source>admin.menu.order</source>
         <target>订单</target>

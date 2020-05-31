@@ -1,11 +1,5 @@
 <?php
 
-/*
- * This file is part of the tradable.
- *
- * @author siganushka <siganushka@gmail.com>
- */
-
 namespace App\Menu;
 
 use Knp\Menu\FactoryInterface;
@@ -35,6 +29,9 @@ class Builder
 
         $menu->addChild('admin.menu.product', ['route' => 'admin_product'])
             ->setExtra('icon', 'fas fa-gift');
+
+        $menu->addChild('admin.menu.variant', ['route' => 'admin_variant'])
+            ->setExtra('icon', 'fas fa-dolly-flatbed');
 
         $menu->addChild('admin.menu.order', ['route' => 'admin_order'])
             ->setExtra('icon', 'fas fa-shopping-cart');

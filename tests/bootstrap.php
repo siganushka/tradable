@@ -1,11 +1,5 @@
 <?php
 
-/*
- * This file is part of the tradable.
- *
- * @author siganushka <siganushka@gmail.com>
- */
-
 use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';

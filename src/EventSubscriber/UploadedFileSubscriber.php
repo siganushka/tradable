@@ -1,11 +1,5 @@
 <?php
 
-/*
- * This file is part of the tradable.
- *
- * @author siganushka <siganushka@gmail.com>
- */
-
 namespace App\EventSubscriber;
 
 use App\Event\UploadedFileEvent;
