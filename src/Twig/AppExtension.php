@@ -2,12 +2,20 @@
 
 namespace App\Twig;
 
+use App\Utils\CurrencyUtils;
 use Siganushka\GenericBundle\Model\EnableInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class AppExtension extends AbstractExtension
 {
+    private $currencyUtils;
+
+    public function __construct(CurrencyUtils $currencyUtils)
+    {
+        $this->currencyUtils = $currencyUtils;
+    }
+
     public function getFilters(): array
     {
         return [
@@ -18,9 +26,9 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    public function priceFilter(int $amount, int $decimals = 2, string $decPoint = '.', string $thousandsSep = ',')
+    public function priceFilter(?int $amount, array $options = [])
     {
-        return number_format($amount / 100, $decimals, $decPoint, $thousandsSep);
+        return $this->currencyUtils->format($amount, $options);
     }
 
     public function enableFilter(EnableInterface $subject)

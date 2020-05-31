@@ -3,7 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Event\UploadedFileEvent;
-use App\Util\FileUtils;
+use App\Utils\FileUtils;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class UploadedFileSubscriber implements EventSubscriberInterface
