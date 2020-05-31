@@ -61,17 +61,9 @@
         <source>app.action.show</source>
         <target>查看</target>
       </trans-unit>
-      <trans-unit id="kQFRqT." resname="resource.user.logger">
-        <source>resource.user.logger</source>
-        <target>操作日志</target>
-      </trans-unit>
-      <trans-unit id="EgpdE6n" resname="resource.user.change_password">
-        <source>resource.user.change_password</source>
-        <target>修改密码</target>
-      </trans-unit>
-      <trans-unit id="zFHwRsG" resname="resource.user.logout">
-        <source>resource.user.logout</source>
-        <target>退出</target>
+      <trans-unit id="tvdGC0d" resname="_id">
+        <source>_id</source>
+        <target>ID</target>
       </trans-unit>
       <trans-unit id="QK5NvAH" resname="resource.attribute.name">
         <source>resource.attribute.name</source>

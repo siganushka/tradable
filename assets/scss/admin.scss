@@ -5,6 +5,11 @@
   to { transform: rotate(360deg); }
 }
 
+.currency {
+  color: #ff5500;
+  &:before { font-size: .75rem; content: '￥'; }
+}
+
 .choose-image { color: #ced4da; border: 1px dashed #ced4da; border-radius: 0.25rem; background-color: #fff; text-align: center; margin: 0; padding: 1px; position: relative; display: block; cursor: pointer; }
 .choose-image:hover { color: #80bdff; border-color: #80bdff; }
 .choose-image img { max-width: 100%; max-height: 100%; border-radius: 0.25rem; }

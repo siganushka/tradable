@@ -23,7 +23,7 @@ class AttributeController extends AbstractController
      */
     public function index(AttributeTypeRegistry $registry): Response
     {
-        $entities = $this->attributeRepository->findAll();
+        $entities = $this->attributeRepository->findBy([], ['createdAt' => 'DESC', 'id' => 'DESC']);
 
         return $this->render('admin/attribute/index.html.twig', [
             'entities' => $entities,

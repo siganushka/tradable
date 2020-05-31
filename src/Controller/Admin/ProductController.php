@@ -25,7 +25,7 @@ class ProductController extends AbstractController
      */
     public function index(): Response
     {
-        $entities = $this->productRepository->findBy([], ['createdAt' => 'DESC']);
+        $entities = $this->productRepository->findBy([], ['createdAt' => 'DESC', 'id' => 'DESC']);
 
         return $this->render('admin/product/index.html.twig', [
             'entities' => $entities,

@@ -19,7 +19,7 @@ class AppExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('price', [$this, 'priceFilter']),
+            new TwigFilter('price', [$this, 'priceFilter'], ['is_safe' => ['html']]),
             new TwigFilter('enable', [$this, 'enableFilter'], ['is_safe' => ['html']]),
             new TwigFilter('datetimeable', [$this, 'datetimeableFilter'], ['is_safe' => ['html']]),
             new TwigFilter('str_repeat', [$this, 'strRepeat'], ['is_safe' => ['html']]),
@@ -28,7 +28,7 @@ class AppExtension extends AbstractExtension
 
     public function priceFilter(?int $amount, array $options = [])
     {
-        return $this->currencyUtils->format($amount, $options);
+        return sprintf('<span class="currency">%s</span>', $this->currencyUtils->format($amount, $options));
     }
 
     public function enableFilter(EnableInterface $subject)

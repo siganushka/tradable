@@ -1,20 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/layout.html.twig' %}
 
-{% block title %}Hello VariantController!{% endblock %}
+{% block content %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+  <div class="mb-3">
+    <a href="{{ path('admin_index') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
+  </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  {{ include('admin/flashes.html.twig') }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/data/www/tradable/src/Controller/Admin/VariantController.php'|file_link(0) }}">src/Controller/Admin/VariantController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/data/www/tradable/templates/admin/variant/index.html.twig'|file_link(0) }}">templates/admin/variant/index.html.twig</a></code></li>
-    </ul>
-</div>
+  <table class="table">
+    <tr>
+      <th>{{ '_id'|trans }}</th>
+      <th>{{ 'resource.product.variant.name'|trans }}</th>
+      <th>{{ 'resource.product.variant.price'|trans }}</th>
+      <th>{{ 'resource.product.unit'|trans }}</th>
+      <th>{{ 'resource.product.variant.quantity'|trans }}</th>
+      <th>{{ 'app.enabled'|trans }}</th>
+      <th>{{ 'app.created_at'|trans }}</th>
+      <th>{{ 'app.action'|trans }}</th>
+    </tr>
+    {% for entity in entities %}
+    <tr>
+      <td>{{ entity.id }}</td>
+      <td>
+        {{ entity.name }}
+        ({% for optionValue in entity.optionValues %}
+        {{ optionValue.name }} {% if optionValue != entity.optionValues|last %}/{% endif %}
+        {% endfor %})
+      </td>
+      <td>{{ entity.price|price }}</td>
+      <td>{{ entity.product.unit }}</td>
+      <td>{{ entity.quantity|default('resource.product.variant.quantity_untracked'|trans) }}</td>
+      <td>{{ entity|enable }}</td>
+      <td>{{ entity.createdAt|datetimeable }}</td>
+      <td>
+        <a href="{{ path('admin_product_variant_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
+        <a href="{{ path('admin_product_variant_delete', {id: entity.id, token: csrf_token('delete')}) }}">{{ 'app.action.delete'|trans }}</a>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="9" class="text-center text-muted">No items.</td>
+    </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
