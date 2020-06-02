@@ -26,10 +26,9 @@
     <tr>
       <td>{{ entity.id }}</td>
       <td>
-        {{ entity.name }}
-        ({% for optionValue in entity.optionValues %}
-        {{ optionValue.name }} {% if optionValue != entity.optionValues|last %}/{% endif %}
-        {% endfor %})
+        {% for optionValue in entity.optionValues %}
+          <span class="badge badge-info">{{ optionValue.name }}</span>
+        {% endfor %}
       </td>
       <td>{{ entity.price|price }}</td>
       <td>{{ entity.product.unit }}</td>
