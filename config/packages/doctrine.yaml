@@ -17,14 +17,12 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: App
 
-        # 启用二级缓存
         second_level_cache:
             enabled: true
             region_lifetime: 3600
             region_cache_driver:
                 type: service
                 id: doctrine.system_cache_provider
-
 
 services:
     doctrine.system_cache_provider:

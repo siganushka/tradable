@@ -9,12 +9,10 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class AddAttributeTypePass implements CompilerPassInterface
 {
-    const TAG_NAME = 'app.attribute_type';
-
     public function process(ContainerBuilder $container)
     {
         $definition = $container->findDefinition(AttributeTypeRegistry::class);
-        foreach ($container->findTaggedServiceIds(self::TAG_NAME) as $id => $attributes) {
+        foreach ($container->findTaggedServiceIds('app.attribute_type') as $id => $attributes) {
             foreach ($attributes as $attribute) {
                 $definition->addMethodCall('register', [new Reference($id)]);
             }

@@ -1,5 +1,4 @@
 framework:
-    secret: '%env(APP_SECRET)%'
     #csrf_protection: true
     #http_method_override: true
 
@@ -14,6 +13,3 @@ framework:
     #fragments: true
     php_errors:
         log: true
-
-siganushka_generic:
-    table_prefix: tb_

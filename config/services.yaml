@@ -33,18 +33,3 @@ services:
 
     App\Menu\Builder:
         tags: [{ name: knp_menu.menu_builder, method: createMainMenu, alias: main }]
-
-    App\Form\AttributeType\TextAttributeType:
-        tags: [{ name: app.attribute_type, alias: text }]
-
-    App\Form\AttributeType\TextareaAttributeType:
-        tags: [{ name: app.attribute_type, alias: textarea }]
-
-    App\Form\AttributeType\RadioAttributeType:
-        tags: [{ name: app.attribute_type, alias: radio }]
-
-    App\Form\AttributeType\CheckboxAttributeType:
-        tags: [{ name: app.attribute_type, alias: checkbox }]
-
-    App\Form\AttributeType\SelectAttributeType:
-        tags: [{ name: app.attribute_type, alias: select }]
