@@ -7,8 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Siganushka\GenericBundle\Model\ResourceInterface;
 use Siganushka\GenericBundle\Model\ResourceTrait;
-use Siganushka\GenericBundle\Model\SortableInterface;
-use Siganushka\GenericBundle\Model\SortableTrait;
 use Siganushka\GenericBundle\Model\TimestampableInterface;
 use Siganushka\GenericBundle\Model\TimestampableTrait;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -16,10 +14,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductOptionValueRepository")
  */
-class ProductOptionValue implements ResourceInterface, SortableInterface, TimestampableInterface
+class ProductOptionValue implements ResourceInterface, TimestampableInterface
 {
     use ResourceTrait;
-    use SortableTrait;
     use TimestampableTrait;
 
     /**

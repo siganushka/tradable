@@ -23,13 +23,6 @@ class Product implements ResourceInterface, EnableInterface, TimestampableInterf
     use TimestampableTrait;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
-     *
-     * @Assert\NotBlank()
-     */
-    private $category;
-
-    /**
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank()
@@ -44,13 +37,11 @@ class Product implements ResourceInterface, EnableInterface, TimestampableInterf
     private $unit;
 
     /**
-     * @ORM\Column(type="json")
-     */
-    private $attributeValues = [];
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProductOption", mappedBy="product", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"sort": "ASC"})
+     *
+     * @Assert\Count(min=1)
+     * @Assert\Valid()
      */
     private $options;
 
@@ -64,18 +55,6 @@ class Product implements ResourceInterface, EnableInterface, TimestampableInterf
     {
         $this->options = new ArrayCollection();
         $this->variants = new ArrayCollection();
-    }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -98,18 +77,6 @@ class Product implements ResourceInterface, EnableInterface, TimestampableInterf
     public function setUnit(string $unit): self
     {
         $this->unit = $unit;
-
-        return $this;
-    }
-
-    public function getAttributeValues(): ?array
-    {
-        return $this->attributeValues;
-    }
-
-    public function setAttributeValues(?array $attributeValues): self
-    {
-        $this->attributeValues = $attributeValues;
 
         return $this;
     }

@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
-use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,12 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     private $productRepository;
-    private $categoryRepository;
 
-    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
+    public function __construct(ProductRepository $productRepository)
     {
         $this->productRepository = $productRepository;
-        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -33,17 +30,11 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/products/new/{categoryId}", name="admin_product_new", methods="GET|POST")
+     * @Route("/products/new", name="admin_product_new", methods="GET|POST")
      */
-    public function new(Request $request, string $categoryId): Response
+    public function new(Request $request): Response
     {
-        $category = $this->categoryRepository->find($categoryId);
-        if (!$category) {
-            throw $this->createNotFoundException(sprintf('The #%s not found.', $id));
-        }
-
         $entity = new Product();
-        $entity->setCategory($category);
         $entity->setEnabled(true);
 
         $form = $this->createForm('App\Form\ProductType', $entity);
@@ -80,6 +71,9 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // disable modify
+            $this->isProductOptionChanged($entity);
+
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
@@ -114,5 +108,26 @@ class ProductController extends AbstractController
         ]);
 
         return $this->redirectToRoute('admin_product');
+    }
+
+    private function isProductOptionChanged(Product $product)
+    {
+        $options = $product->getOptions();
+        if ($options->isDirty()) {
+            throw new \RuntimeException('Cannot be modify options.');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $uow = $em->getUnitOfWork();
+        $uow->computeChangeSets();
+
+        foreach ($options as $option) {
+            if (!empty($uow->getEntityChangeSet($option))) {
+                throw new \RuntimeException(sprintf('Cannot be modify options #%d!', $option->getId()));
+            }
+            if ($option->getValues()->isDirty()) {
+                throw new \RuntimeException(sprintf('Cannot be modify options #%d values!', $option->getId()));
+            }
+        }
     }
 }

@@ -6,7 +6,6 @@
 parameters:
     locale: zh_CN
     admin_prefix: admin
-    api_prefix: api
 
 services:
     # default configuration for services in *this* file

@@ -22,7 +22,6 @@ class AppExtension extends AbstractExtension
             new TwigFilter('price', [$this, 'priceFilter'], ['is_safe' => ['html']]),
             new TwigFilter('enable', [$this, 'enableFilter'], ['is_safe' => ['html']]),
             new TwigFilter('datetimeable', [$this, 'datetimeableFilter'], ['is_safe' => ['html']]),
-            new TwigFilter('str_repeat', [$this, 'strRepeat'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -43,10 +42,5 @@ class AppExtension extends AbstractExtension
         return sprintf('<span title="%s">%s</span>',
             $dateTime->format('Y/m/d H:i:s'),
             $dateTime->format('m/d H:i'));
-    }
-
-    public function strRepeat(string $input, int $multiplier)
-    {
-        return str_repeat($input, $multiplier);
     }
 }

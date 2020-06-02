@@ -29,7 +29,6 @@ class ProductFixture extends Fixture
         $option1->addValue(new ProductOptionValue('75 英寸 + 32GB'));
 
         $product = new Product();
-        $product->setCategory($this->getReference('category3_1'));
         $product->setName('小米 4X 液晶平板电视');
         $product->setUnit('台');
         $product->setEnabled(true);
@@ -55,7 +54,6 @@ class ProductFixture extends Fixture
         $option1->addValue(new ProductOptionValue('XL'));
 
         $product = new Product();
-        $product->setCategory($this->getReference('category2_1_3'));
         $product->setName('李维斯圆领纯棉长袖卫衣');
         $product->setUnit('件');
         $product->setEnabled(true);
@@ -84,7 +82,6 @@ class ProductFixture extends Fixture
         $option2->addValue(new ProductOptionValue('256GB'));
 
         $product = new Product();
-        $product->setCategory($this->getReference('category1_1_1'));
         $product->setName('Google Pixel 3');
         $product->setUnit('台');
         $product->setEnabled(true);

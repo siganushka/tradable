@@ -2,8 +2,10 @@
 
 {% block content %}
 
-  <div class="mb-3">
-    <a href="{{ path('admin_index') }}" class="btn btn-light">&laquo;&nbsp;{{ 'app.back'|trans }}</a>
+  <div class="clearfix mb-3">
+    <div class="float-left">
+      <a href="{{ path('admin_product_new') }}" class="btn btn-primary">{{ 'app.action.new'|trans }}</a>
+    </div>
   </div>
 
   {{ include('admin/flashes.html.twig') }}
@@ -12,7 +14,6 @@
     <tr>
       <th>{{ '_id'|trans }}</th>
       <th>{{ 'resource.product.name'|trans }}</th>
-      <th>{{ 'resource.product.category'|trans }}</th>
       <th>{{ 'resource.product.variant'|trans }}</th>
       <th>{{ 'app.enabled'|trans }}</th>
       <th>{{ 'app.created_at'|trans }}</th>
@@ -22,12 +23,10 @@
     <tr>
       <td>{{ entity.id }}</td>
       <td>{{ entity.name }}</td>
-      <td>{{ entity.category.name }}</td>
       <td><span class="badge badge-pill badge-light">{{ entity.variants|length }}</span></td>
       <td>{{ entity|enable }}</td>
       <td>{{ entity.createdAt|datetimeable }}</td>
       <td>
-        <a href="{{ path('admin_product_option', {productId: entity.id}) }}">{{ 'resource.product.option'|trans }}</a>
         <a href="{{ path('admin_product_variant', {productId: entity.id}) }}">{{ 'resource.product.variant'|trans }}</a>
         <a href="{{ path('admin_product_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
         <a href="{{ path('admin_product_delete', {id: entity.id}) }}">{{ 'app.action.delete'|trans }}</a>

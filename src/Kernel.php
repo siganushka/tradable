@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\DependencyInjection\Compiler\AddAttributeTypePass;
-use App\Form\AttributeType\AttributeTypeInterface;
 use Doctrine\Common\EventSubscriber;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -35,11 +33,5 @@ class Kernel extends BaseKernel
         $container->registerForAutoconfiguration(EventSubscriber::class)
             ->addTag('doctrine.event_subscriber')
         ;
-
-        $container->registerForAutoconfiguration(AttributeTypeInterface::class)
-            ->addTag('app.attribute_type')
-        ;
-
-        $container->addCompilerPass(new AddAttributeTypePass());
     }
 }

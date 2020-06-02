@@ -36,7 +36,7 @@ class ProductOption implements ResourceInterface, SortableInterface, Timestampab
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProductOptionValue", mappedBy="option", cascade={"all"}, orphanRemoval=true)
-     * @ORM\OrderBy({"sort": "ASC"})
+     * @ORM\OrderBy({"id": "ASC"})
      *
      * @Assert\Count(min=1)
      * @Assert\Valid()

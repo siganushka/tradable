@@ -18,14 +18,8 @@ class Builder
         $menu = $this->factory->createItem('root')
             ->setChildrenAttribute('class', 'nav flex-column');
 
-        $menu->addChild('admin.menu.welcome', ['route' => 'admin_index'])
+        $menu->addChild('admin.menu.index', ['route' => 'admin_index'])
             ->setExtra('icon', 'fas fa-home');
-
-        $menu->addChild('admin.menu.attribute', ['route' => 'admin_attribute'])
-            ->setExtra('icon', 'fas fa-cubes');
-
-        $menu->addChild('admin.menu.category', ['route' => 'admin_category'])
-            ->setExtra('icon', 'fas fa-sitemap');
 
         $menu->addChild('admin.menu.product', ['route' => 'admin_product'])
             ->setExtra('icon', 'fas fa-gift');
