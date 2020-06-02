@@ -25,11 +25,7 @@
     {% for entity in product.variants %}
     <tr>
       <td>{{ entity.id }}</td>
-      <td>
-        {% for optionValue in entity.optionValues %}
-          <span class="badge badge-info">{{ optionValue.name }}</span>
-        {% endfor %}
-      </td>
+      <td><span class="badge badge-info">{{ entity.name }}</span></td>
       <td>{{ entity.price|price }}</td>
       <td>{{ entity.product.unit }}</td>
       <td>{{ entity.quantity|default('resource.product.variant.quantity_untracked'|trans) }}</td>

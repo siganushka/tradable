@@ -19,10 +19,8 @@
     <tr>
       <td>{{ entity.id }}</td>
       <td>
-        {{ entity.name }}
-        {% for optionValue in entity.optionValues %}
-          <span class="badge badge-info">{{ optionValue.name }}</span>
-        {% endfor %}
+        {{ entity.product.name }}
+        <span class="badge badge-info">{{ entity.name }}</span>
       </td>
       <td>{{ entity.price|price }}</td>
       <td>{{ entity.product.unit }}</td>

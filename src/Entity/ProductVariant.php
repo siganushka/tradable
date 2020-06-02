@@ -14,6 +14,8 @@ use Siganushka\GenericBundle\Model\TimestampableTrait;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductVariantRepository")
+ * @ORM\HasLifecycleCallbacks()
+ *
  * @App\Validator\UniqueProductVariant
  */
 class ProductVariant implements ResourceInterface, EnableInterface, TimestampableInterface
@@ -53,10 +55,6 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
-
-        if (null === $this->name) {
-            $this->name = $product->getName();
-        }
 
         return $this;
     }
@@ -133,5 +131,13 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
         }
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->name = implode(' / ', array_map(fn ($value) => $value->getName(), $this->optionValues->toArray()));
     }
 }

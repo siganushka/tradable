@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -38,11 +37,6 @@ class ProductVariantType extends AbstractType
         }
 
         $event->getForm()
-            ->add('name', TextType::class, [
-                'label' => 'resource.product.variant.name',
-                'attr' => ['autofocus' => true],
-                'constraints' => new NotBlank(),
-            ])
             ->add('price', MoneyType::class, [
                 'label' => 'resource.product.variant.price',
                 'currency' => 'CNY',
