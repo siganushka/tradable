@@ -11,6 +11,7 @@
 
   <table class="table">
     <tr>
+      <th>{{ '_id'|trans }}</th>
       <th>{{ 'resource.product.variant.name'|trans }}</th>
       <th>{{ 'resource.product.variant.price'|trans }}</th>
       <th>{{ 'resource.product.unit'|trans }}</th>
@@ -21,6 +22,7 @@
     </tr>
     {% for entity in product.variants %}
     <tr>
+      <td>{{ entity.id }}</td>
       <td>
         {{ entity.name }}
         ({% for optionValue in entity.optionValues %}

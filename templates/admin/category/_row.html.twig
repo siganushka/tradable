@@ -26,7 +26,8 @@
   <td>{{ entity.sort }}</td>
   <td>{{ entity.createdAt|datetimeable }}</td>
   <td>
-    <a href="{{ path('admin_category_new', {parentId: entity.id}) }}">{{ 'app.action.new'|trans }}</a>
+    <a href="{{ path('admin_category_new', {parentId: entity.id}) }}">{{ 'resource.category.new_child'|trans }}</a>
+    <a href="{{ path('admin_product_new', {categoryId: entity.id}) }}">{{ 'resource.category.new_product'|trans }}</a>
     <a href="{{ path('admin_category_edit', {id: entity.id}) }}">{{ 'app.action.edit'|trans }}</a>
     <a href="{{ path('admin_category_delete', {id: entity.id, token: csrf_token('delete')}) }}" data-confirm-link="{{ 'message.delete.confirm'|trans }}" data-method="DELETE">{{ 'app.action.delete'|trans }}</a>
   </td>

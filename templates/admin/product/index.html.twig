@@ -10,6 +10,7 @@
 
   <table class="table">
     <tr>
+      <th>{{ '_id'|trans }}</th>
       <th>{{ 'resource.product.name'|trans }}</th>
       <th>{{ 'resource.product.category'|trans }}</th>
       <th>{{ 'resource.product.variant'|trans }}</th>
@@ -19,6 +20,7 @@
     </tr>
     {% for entity in entities %}
     <tr>
+      <td>{{ entity.id }}</td>
       <td>{{ entity.name }}</td>
       <td>{{ entity.category.name }}</td>
       <td><span class="badge badge-pill badge-light">{{ entity.variants|length }}</span></td>

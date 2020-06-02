@@ -141,6 +141,14 @@
         <source>resource.category.attribute</source>
         <target>关联属性</target>
       </trans-unit>
+      <trans-unit id="LeH00kg" resname="resource.category.new_child">
+        <source>resource.category.new_child</source>
+        <target>添加子类</target>
+      </trans-unit>
+      <trans-unit id="pk02oVP" resname="resource.category.new_product">
+        <source>resource.category.new_product</source>
+        <target>添加产品</target>
+      </trans-unit>
       <trans-unit id="FwSk.Re" resname="resource.product.category">
         <source>resource.product.category</source>
         <target>产品分类</target>
@@ -260,6 +268,14 @@
       <trans-unit id="qGz0NQD" resname="admin.menu.file">
         <source>admin.menu.file</source>
         <target>文件</target>
+      </trans-unit>
+      <trans-unit id="VJ6IZAK" resname="app.action.new_child">
+        <source>app.action.new_child</source>
+        <target>__app.action.new_child</target>
+      </trans-unit>
+      <trans-unit id="nnucNnC" resname="app.action.new_product">
+        <source>app.action.new_product</source>
+        <target>__app.action.new_product</target>
       </trans-unit>
     </body>
   </file>
