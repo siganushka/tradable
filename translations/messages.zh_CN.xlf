@@ -5,10 +5,6 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="ufxVq7k" resname="app.placeholder">
-        <source>app.placeholder</source>
-        <target>-</target>
-      </trans-unit>
       <trans-unit id="5GTbhXB" resname="app.back">
         <source>app.back</source>
         <target>返回</target>

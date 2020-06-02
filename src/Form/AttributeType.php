@@ -24,10 +24,6 @@ class AttributeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', TextType::class, [
-                'label' => 'resource.attribute.type',
-                'attr' => ['readonly' => 'readonly'],
-            ])
             ->add('name', TextType::class, [
                 'label' => 'resource.attribute.name',
                 'attr' => ['autofocus' => true],

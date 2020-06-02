@@ -33,7 +33,7 @@
     <tr>
       <td>{{ entity.id }}</td>
       <td>{{ entity.name }}</td>
-      <td>{{ entity.type }}</td>
+      <td>{{ ('resource.attribute.type.' ~ entity.type)|trans }}</td>
       <td>{{ entity.sort }}</td>
       <td>{{ entity.createdAt|datetimeable }}</td>
       <td>

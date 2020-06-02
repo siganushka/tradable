@@ -46,6 +46,7 @@ class SelectAttributeType extends AttributeType
 
         $options = [
             'label' => $attribute->getName(),
+            'translation_domain' => false,
             'choices' => array_flip($configuration['choices']),
         ];
 

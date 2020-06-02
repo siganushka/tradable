@@ -39,7 +39,11 @@ class TextareaAttributeType extends AttributeType
     {
         $configuration = $attribute->getConfiguration();
 
-        $options = ['label' => $attribute->getName()];
+        $options = [
+            'label' => $attribute->getName(),
+            'translation_domain' => false,
+        ];
+
         if (isset($configuration['required']) && $configuration['required']) {
             $options['constraints'][] = new NotBlank();
         }

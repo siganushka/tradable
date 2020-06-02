@@ -46,6 +46,7 @@ class RadioAttributeType extends AttributeType
 
         $options = [
             'label' => $attribute->getName(),
+            'translation_domain' => false,
             'choices' => array_flip($configuration['choices']),
             'multiple' => false,
             'expanded' => true,
