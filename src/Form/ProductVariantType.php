@@ -3,8 +3,13 @@
 namespace App\Form;
 
 use App\Entity\ProductVariant;
+use App\Utils\OptionValueUtils;
+use function BenTools\CartesianProduct\cartesian_product;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,9 +41,31 @@ class ProductVariantType extends AbstractType
             return;
         }
 
+        // Used option values
+        $usedOptionValues = [];
+        foreach ($product->getVariants() as $variant) {
+            $usedOptionValues[] = (new OptionValueUtils($variant->getOptionValues()))->getIdAsString();
+        }
+
+        // Generate groups
+        $groups = [];
+        foreach ($product->getOptions() as $option) {
+            $key = spl_object_hash($option);
+            foreach ($option->getValues() as $optionValue) {
+                $groups[$key][] = $optionValue;
+            }
+        }
+
+        // Generate choices
+        $choices = [];
+        foreach (cartesian_product($groups) as $optionValues) {
+            $choices[] = new ArrayCollection(array_values($optionValues));
+        }
+
         $event->getForm()
             ->add('price', MoneyType::class, [
                 'label' => 'resource.product.variant.price',
+                'attr' => ['placeholder' => 'resource.product.variant.price.help'],
                 'currency' => 'CNY',
                 'divisor' => 100,
                 'constraints' => new NotBlank(),
@@ -51,10 +78,25 @@ class ProductVariantType extends AbstractType
             ->add('enabled', CheckboxType::class, [
                 'label' => 'app.enabled',
             ])
-            ->add('optionValues', ProductOptionValueCollectionType::class, [
+            ->add('optionValues', ChoiceType::class, [
                 'label' => 'resource.product.options',
-                'error_bubbling' => false,
-                'product' => $product,
+                'placeholder' => 'app.choice',
+                'choices' => $choices,
+                'choice_value' => function (Collection $choice) {
+                    return (new OptionValueUtils($choice))->getIdAsString();
+                },
+                'choice_label' => function (Collection $choice, $key, $value) use ($usedOptionValues) {
+                    $label = (new OptionValueUtils($choice))->getNameAsString();
+                    if (\in_array($value, $usedOptionValues)) {
+                        $label .= ' (√)';
+                    }
+
+                    return $label;
+                },
+                'choice_attr' => function (Collection $choice, $key, $value) use ($usedOptionValues) {
+                    return ['disabled' => \in_array($value, $usedOptionValues)];
+                },
+                'choice_translation_domain' => false,
             ])
         ;
     }

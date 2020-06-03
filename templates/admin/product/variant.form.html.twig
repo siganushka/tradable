@@ -7,8 +7,9 @@
   </div>
 
   {{ form_start(form) }}
+    {{ form_row(form.optionValues) }}
     {{ form_row(form.price) }}
-    
+
     <div class="form-group row">
       {{ form_label(form.inventory) }}
       <div class="col-sm-10">
@@ -22,7 +23,6 @@
     </div>
 
     {{ form_row(form.enabled) }}
-    {{ form_row(form.optionValues) }}
 
     <div class="form-group row">
       <div class="col-sm-10 ml-auto">

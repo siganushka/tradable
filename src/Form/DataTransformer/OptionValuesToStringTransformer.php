@@ -12,7 +12,7 @@ class OptionValuesToStringTransformer implements DataTransformerInterface
     private $repository;
     private $delimiter;
 
-    public function __construct(ProductOptionValueRepository $repository, $delimiter = ',')
+    public function __construct(ProductOptionValueRepository $repository, $delimiter = '/')
     {
         $this->repository = $repository;
         $this->delimiter = $delimiter;

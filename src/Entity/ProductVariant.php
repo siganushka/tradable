@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Utils\OptionValueUtils;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -91,18 +92,14 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
         return $this;
     }
 
-    public function getOptionValuesToken()
+    public function getOptionValuesIdAsString()
     {
-        $idsAsArray = array_map(fn ($item) => $item->getId(), $this->optionValues->toArray());
-
-        sort($idsAsArray);
-
-        return implode('/', $idsAsArray);
+        return (new OptionValueUtils($this->optionValues))->getIdAsString();
     }
 
-    public function getOptionValuesName()
+    public function getOptionValuesNameAsString()
     {
-        return implode('/', array_map(fn ($item) => $item->getName(), $this->optionValues->toArray()));
+        return (new OptionValueUtils($this->optionValues))->getNameAsString();
     }
 
     public function getOptionValues(): Collection

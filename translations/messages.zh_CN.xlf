@@ -5,6 +5,10 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
+      <trans-unit id="TXUTga6" resname="app.choice">
+        <source>app.choice</source>
+        <target>--- 请选择 ---</target>
+      </trans-unit>
       <trans-unit id="5GTbhXB" resname="app.back">
         <source>app.back</source>
         <target>返回</target>
@@ -112,6 +116,10 @@
       <trans-unit id="RHFDDyu" resname="resource.product.variant.price">
         <source>resource.product.variant.price</source>
         <target>库存价格</target>
+      </trans-unit>
+      <trans-unit id="Y2lRDO8" resname="resource.product.variant.price.help">
+        <source>resource.product.variant.price.help</source>
+        <target>填写价格，单位为“元”</target>
       </trans-unit>
       <trans-unit id="qPyS4fY" resname="resource.product.variant.inventory">
         <source>resource.product.variant.inventory</source>

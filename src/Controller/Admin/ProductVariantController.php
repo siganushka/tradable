@@ -58,7 +58,7 @@ class ProductVariantController extends AbstractController
             $em->flush();
 
             $this->addTransedMessage('success', 'message.product.variant.updated', [
-                '%name%' => $entity->getOptionValuesName(),
+                '%name%' => $entity->getOptionValuesNameAsString(),
             ]);
 
             return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
@@ -88,7 +88,7 @@ class ProductVariantController extends AbstractController
             $em->flush();
 
             $this->addTransedMessage('success', 'message.product.variant.updated', [
-                '%name%' => $entity->getOptionValuesName(),
+                '%name%' => $entity->getOptionValuesNameAsString(),
             ]);
 
             return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
@@ -121,7 +121,7 @@ class ProductVariantController extends AbstractController
         $em->flush();
 
         $this->addTransedMessage('success', 'product.variant.deleted', [
-            '%name%' => $entity->getOptionValuesName(),
+            '%name%' => $entity->getOptionValuesNameAsString(),
         ]);
 
         return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
