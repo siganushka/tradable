@@ -27,7 +27,8 @@ class AppExtension extends AbstractExtension
 
     public function priceFilter(?int $amount, array $options = [])
     {
-        return sprintf('<span class="currency">%s</span>', $this->currencyUtils->format($amount, $options));
+        return sprintf('<span class="currency">%s</span>',
+            $this->currencyUtils->format($amount, $options));
     }
 
     public function enableFilter(EnableInterface $subject)
