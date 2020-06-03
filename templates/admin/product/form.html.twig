@@ -3,31 +3,30 @@
 {% form_theme form _self %}
 
 {% block _product_options_widget %}
-  <button type="button" class="btn btn-success mb-2 collection-add">
+  <button type="button" class="btn btn-success mb-2 collection-add"
+    {% if form.vars.disabled %}disabled{% endif %}>
     <i class="fas fa-plus"></i>
   </button>
   <table class="table table-bordered m-0" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}">
   {% for child in form %}
     {{ form_widget(child) }}
   {% endfor %}
-  </div>
   </table>
 {% endblock _product_options_widget %}
 
 {% block _product_options_entry_widget %}
 <tr class="collection-items">
-  <td width="20%">
+  <td width="30%">
     {{ form_widget(form.name) }}
     {{ form_errors(form.name) }}
-    {{ form_help(form.name) }}
   </td>
-  <td width="60%">
+  <td width="50%">
     {{ form_widget(form.values) }}
     {{ form_errors(form.values) }}
-    {{ form_help(form.values) }}
   </td>
   <td width="20%">
-    <button type="button" class="btn btn-danger collection-remove">
+    <button type="button" class="btn btn-danger collection-remove"
+      {% if form.vars.disabled %}disabled{% endif %}>
       <i class="fas fa-trash-alt"></i>
     </button>
   </td>
@@ -35,7 +34,6 @@
 {% endblock _product_options_entry_widget %}
 
 {% block content %}
-
   <div class="mb-3">
     <a href="{{ path('admin_product') }}" class="btn btn-light">&laquo;&nbsp;返回</a>
   </div>

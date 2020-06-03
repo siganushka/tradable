@@ -10,7 +10,7 @@
       <th>{{ 'resource.product.variant.name'|trans }}</th>
       <th>{{ 'resource.product.variant.price'|trans }}</th>
       <th>{{ 'resource.product.unit'|trans }}</th>
-      <th>{{ 'resource.product.variant.quantity'|trans }}</th>
+      <th>{{ 'resource.product.variant.inventory'|trans }}</th>
       <th>{{ 'app.enabled'|trans }}</th>
       <th>{{ 'app.created_at'|trans }}</th>
       <th>{{ 'app.action'|trans }}</th>
@@ -20,11 +20,11 @@
       <td>{{ entity.id }}</td>
       <td>
         {{ entity.product.name }}
-        <span class="badge badge-info">{{ entity.name }}</span>
+        <span class="badge badge-info">{{ entity.optionValuesName }}</span>
       </td>
       <td>{{ entity.price|price }}</td>
       <td>{{ entity.product.unit }}</td>
-      <td>{{ entity.quantity|default('resource.product.variant.quantity_untracked'|trans) }}</td>
+      <td>{{ entity.inventory|default('resource.product.variant.inventory_untracked'|trans) }}</td>
       <td>{{ entity|enable }}</td>
       <td>{{ entity.createdAt|datetimeable }}</td>
       <td>

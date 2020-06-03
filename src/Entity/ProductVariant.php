@@ -14,14 +14,12 @@ use Siganushka\GenericBundle\Model\TimestampableTrait;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductVariantRepository")
- * @ORM\HasLifecycleCallbacks()
  *
  * @App\Validator\UniqueProductVariant
  */
 class ProductVariant implements ResourceInterface, EnableInterface, TimestampableInterface
 {
     use ResourceTrait;
-    use ProductVariantTrait;
     use EnableTrait;
     use TimestampableTrait;
 
@@ -29,6 +27,16 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
      * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="variants")
      */
     private $product;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $inventory;
 
     /**
      * @ORM\ManyToMany(targetEntity="ProductOptionValue", inversedBy="variants")
@@ -59,15 +67,42 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
         return $this;
     }
 
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): ?self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getInventory(): ?int
+    {
+        return $this->inventory;
+    }
+
+    public function setInventory(int $inventory): ?self
+    {
+        $this->inventory = $inventory;
+
+        return $this;
+    }
+
     public function getOptionValuesToken()
     {
-        $tokenAsArray = $this->optionValues->map(function (ProductOptionValue $item) {
-            return $item->getId();
-        })->toArray();
+        $idsAsArray = array_map(fn ($item) => $item->getId(), $this->optionValues->toArray());
 
-        sort($tokenAsArray);
+        sort($idsAsArray);
 
-        return implode('_', $tokenAsArray);
+        return implode('/', $idsAsArray);
+    }
+
+    public function getOptionValuesName()
+    {
+        return implode('/', array_map(fn ($item) => $item->getName(), $this->optionValues->toArray()));
     }
 
     public function getOptionValues(): Collection
@@ -131,13 +166,5 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
         }
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist()
-    {
-        $this->name = implode(' / ', array_map(fn ($value) => $value->getName(), $this->optionValues->toArray()));
     }
 }

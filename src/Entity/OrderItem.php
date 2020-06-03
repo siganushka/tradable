@@ -12,7 +12,6 @@ use Siganushka\GenericBundle\Model\ResourceTrait;
 class OrderItem implements ResourceInterface
 {
     use ResourceTrait;
-    use ProductVariantTrait;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="items")
@@ -24,10 +23,27 @@ class OrderItem implements ResourceInterface
      */
     private $variant;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $quantity;
+
     public function __construct(ProductVariant $variant, int $quantity)
     {
+        $product = $variant->getProduct();
+
         $this->variant = $variant;
-        $this->name = $variant->getName();
+        $this->name = sprintf('%s (%s)', $product->getName(), $variant->getOptionValuesName());
         $this->price = $variant->getPrice();
         $this->quantity = $quantity;
     }
@@ -47,6 +63,42 @@ class OrderItem implements ResourceInterface
     public function getVariant(): ProductVariant
     {
         return $this->variant;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): ?self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): ?self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): ?self
+    {
+        $this->quantity = $quantity;
+
+        return $this;
     }
 
     public function getSubtotal(): int

@@ -23,10 +23,10 @@ class ProductFixture extends Fixture
     {
         $option1 = new ProductOption();
         $option1->setName('版本');
-        $option1->addValue(new ProductOptionValue('65 英寸 + 16GB'));
-        $option1->addValue(new ProductOptionValue('65 英寸 + 32GB'));
-        $option1->addValue(new ProductOptionValue('75 英寸 + 16GB'));
-        $option1->addValue(new ProductOptionValue('75 英寸 + 32GB'));
+        $option1->addValue(new ProductOptionValue('16GB+65寸'));
+        $option1->addValue(new ProductOptionValue('32GB+65寸'));
+        $option1->addValue(new ProductOptionValue('16GB+75寸'));
+        $option1->addValue(new ProductOptionValue('32GB+75寸'));
 
         $product = new Product();
         $product->setName('小米 4X 液晶平板电视');
@@ -109,7 +109,7 @@ class ProductFixture extends Fixture
         foreach (cartesian_product($groups) as $optionValues) {
             $variant = new ProductVariant();
             $variant->setPrice(mt_rand(100, 999) * 100);
-            $variant->setQuantity(mt_rand(1, 10));
+            $variant->setInventory(mt_rand(1, 10));
             $variant->setEnabled(true);
             $variant->setOptionValues($optionValues);
             $product->addVariant($variant);

@@ -71,39 +71,35 @@
       </trans-unit>
       <trans-unit id="7JSzdXQ" resname="resource.product.unit">
         <source>resource.product.unit</source>
-        <target>单位名称</target>
+        <target>产品单位</target>
       </trans-unit>
       <trans-unit id="RUJjjVz" resname="resource.product.unit.help">
         <source>resource.product.unit.help</source>
         <target>产品的单位名称，比如 “台”</target>
       </trans-unit>
-      <trans-unit id="j1p6uUj" resname="resource.product.option">
-        <source>resource.product.option</source>
-        <target>规格</target>
+      <trans-unit id="7pGaTZz" resname="resource.product.options">
+        <source>resource.product.options</source>
+        <target>产品规格</target>
       </trans-unit>
-      <trans-unit id="7bEWt8w" resname="resource.product.option.help">
-        <source>resource.product.option.help</source>
-        <target><![CDATA[产品多规格参数，比如 “存储：16GB / 32GB / 64GB”，可添加多个规格，<strong class="text-warning">该字段不可修改，请确认后再添加。</strong>]]></target>
+      <trans-unit id="JpFnPar" resname="resource.product.options.help">
+        <source>resource.product.options.help</source>
+        <target><![CDATA[产品规格，比如 “存储：16GB/32GB/64GB”，多个规格使用“／”分隔，<strong class="text-warning">该字段不可修改，请确认后再添加。</strong>]]></target>
       </trans-unit>
-      <trans-unit id="bDLOoBu" resname="resource.product.option.name">
-        <source>resource.product.option.name</source>
+      <trans-unit id="yfHzU31" resname="resource.product.options.name">
+        <source>resource.product.options.name</source>
         <target>规格名称</target>
       </trans-unit>
-      <trans-unit id="XHAhw4r" resname="resource.product.option.name.help">
-        <source>resource.product.option.name.help</source>
+      <trans-unit id="IUOHcH5" resname="resource.product.options.name.help">
+        <source>resource.product.options.name.help</source>
         <target>规格名称，比如“存储”。</target>
       </trans-unit>
-      <trans-unit id="VToCIhP" resname="resource.product.option.values.help">
-        <source>resource.product.option.values.help</source>
-        <target>规格的值，比如 16GB / 32GB / 64GB。</target>
-      </trans-unit>
-      <trans-unit id="VHACUd2" resname="resource.product.option.value">
-        <source>resource.product.option.value</source>
+      <trans-unit id="79prRMX" resname="resource.product.options.values">
+        <source>resource.product.options.values</source>
         <target>规格选项</target>
       </trans-unit>
-      <trans-unit id="vWvj8Zm" resname="resource.product.option.value.name">
-        <source>resource.product.option.value.name</source>
-        <target>选项名称</target>
+      <trans-unit id="U4XSDa8" resname="resource.product.options.values.help">
+        <source>resource.product.options.values.help</source>
+        <target>规格选项，比如 16GB/32GB/64GB。</target>
       </trans-unit>
       <trans-unit id="LjsFEhm" resname="resource.product.variant">
         <source>resource.product.variant</source>
@@ -117,13 +113,17 @@
         <source>resource.product.variant.price</source>
         <target>库存价格</target>
       </trans-unit>
-      <trans-unit id="RZQT_kd" resname="resource.product.variant.quantity">
-        <source>resource.product.variant.quantity</source>
+      <trans-unit id="qPyS4fY" resname="resource.product.variant.inventory">
+        <source>resource.product.variant.inventory</source>
         <target>库存数量</target>
       </trans-unit>
-      <trans-unit id="A8KCBgH" resname="resource.product.variant.quantity_untracked">
-        <source>resource.product.variant.quantity_untracked</source>
+      <trans-unit id="lRfiWKt" resname="resource.product.variant.inventory_untracked">
+        <source>resource.product.variant.inventory_untracked</source>
         <target>不限</target>
+      </trans-unit>
+      <trans-unit id="3DWF9tp" resname="resource.product.variant.inventory_untracked.help">
+        <source>resource.product.variant.inventory_untracked.help</source>
+        <target>可选，不填写则不限库存</target>
       </trans-unit>
       <trans-unit id="ilbvPPj" resname="resource.order.number">
         <source>resource.order.number</source>
@@ -183,15 +183,7 @@
       </trans-unit>
       <trans-unit id="qGz0NQD" resname="admin.menu.file">
         <source>admin.menu.file</source>
-        <target>文件（测试）</target>
-      </trans-unit>
-      <trans-unit id="VJ6IZAK" resname="app.action.new_child">
-        <source>app.action.new_child</source>
-        <target>__app.action.new_child</target>
-      </trans-unit>
-      <trans-unit id="nnucNnC" resname="app.action.new_product">
-        <source>app.action.new_product</source>
-        <target>__app.action.new_product</target>
+        <target>文件</target>
       </trans-unit>
     </body>
   </file>

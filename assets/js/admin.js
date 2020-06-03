@@ -1,5 +1,6 @@
 import 'jquery'
 import 'bootstrap'
+import 'bootstrap-tagsinput'
 
 global.$ = global.jQuery = $
 

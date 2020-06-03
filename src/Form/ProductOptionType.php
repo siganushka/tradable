@@ -24,13 +24,15 @@ class ProductOptionType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'resource.product.option.name',
-                'attr' => ['autofocus' => true],
-                'help' => 'resource.product.option.name.help',
+                'label' => 'resource.product.options.name',
+                'attr' => [
+                    'autofocus' => true,
+                    'placeholder' => 'resource.product.options.name.help',
+                ],
             ])
             ->add('values', TextType::class, [
-                'label' => 'resource.product.option.value',
-                'help' => 'resource.product.option.values.help',
+                'label' => 'resource.product.options.value',
+                'attr' => ['placeholder' => 'resource.product.options.values.help'],
             ])
         ;
 

@@ -43,16 +43,16 @@ class ProductVariantType extends AbstractType
                 'divisor' => 100,
                 'constraints' => new NotBlank(),
             ])
-            ->add('quantity', IntegerType::class, [
-                'label' => 'resource.product.variant.quantity',
-                'attr' => ['placeholder' => 'resource.product.variant.quantity_untracked'],
+            ->add('inventory', IntegerType::class, [
+                'label' => 'resource.product.variant.inventory',
+                'attr' => ['placeholder' => 'resource.product.variant.inventory_untracked.help'],
                 'constraints' => new GreaterThanOrEqual(0),
             ])
             ->add('enabled', CheckboxType::class, [
                 'label' => 'app.enabled',
             ])
             ->add('optionValues', ProductOptionValueCollectionType::class, [
-                'label' => 'resource.product.option',
+                'label' => 'resource.product.options',
                 'error_bubbling' => false,
                 'product' => $product,
             ])
