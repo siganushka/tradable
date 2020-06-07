@@ -3,18 +3,15 @@
 namespace App\Form\DataTransformer;
 
 use App\Entity\ProductOptionValue;
-use App\Repository\ProductOptionValueRepository;
 use Symfony\Component\Form\DataTransformerInterface;
 use function Symfony\Component\String\u;
 
-class OptionValuesToStringTransformer implements DataTransformerInterface
+class OptionValueToStringTransformer implements DataTransformerInterface
 {
-    private $repository;
     private $delimiter;
 
-    public function __construct(ProductOptionValueRepository $repository, $delimiter = '/')
+    public function __construct($delimiter = '/')
     {
-        $this->repository = $repository;
         $this->delimiter = $delimiter;
     }
 
@@ -36,18 +33,10 @@ class OptionValuesToStringTransformer implements DataTransformerInterface
             return [];
         }
 
-        $names = array_filter(array_unique(array_map('trim', u($value)->split($this->delimiter))));
-
-        $result = $this->repository->findBy(['name' => $names]);
+        $newNames = array_filter(array_unique(array_map('trim', u($value)->split($this->delimiter))));
 
         // introduced in PHP 7.4
         // @see https://www.php.net/manual/en/functions.arrow.php
-        $namesAsArray = array_map(fn ($item) => $item->getName(), $result);
-
-        foreach (array_diff($names, $namesAsArray) as $value) {
-            $result[] = new ProductOptionValue($value);
-        }
-
-        return $result;
+        return array_map(fn ($item) => new ProductOptionValue($item), $newNames);
     }
 }
