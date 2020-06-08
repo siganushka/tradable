@@ -10,7 +10,7 @@ class OptionValueToStringTransformer implements DataTransformerInterface
 {
     private $delimiter;
 
-    public function __construct($delimiter = '/')
+    public function __construct(string $delimiter = '/')
     {
         $this->delimiter = $delimiter;
     }
