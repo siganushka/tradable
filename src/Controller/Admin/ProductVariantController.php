@@ -116,9 +116,9 @@ class ProductVariantController extends AbstractController
             return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($entity);
-        $em->flush();
+        // $em = $this->getDoctrine()->getManager();
+        // $em->remove($entity);
+        // $em->flush();
 
         $this->addTransedMessage('success', 'product.variant.deleted', [
             '%name%' => $entity->getOptionValuesNameAsString(),

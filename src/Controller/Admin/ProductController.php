@@ -99,9 +99,9 @@ class ProductController extends AbstractController
             throw $this->createNotFoundException(sprintf('The #%s not found.', $id));
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($entity);
-        $em->flush();
+        // $em = $this->getDoctrine()->getManager();
+        // $em->remove($entity);
+        // $em->flush();
 
         $this->addTransedMessage('success', 'message.product.deleted', [
             '%name%' => $entity->getName(),
