@@ -2,14 +2,20 @@
 
 namespace App\Utils;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class OptionValueUtils
 {
     private $optionValues;
 
-    public function __construct(Collection $optionValues)
+    public function __construct(?Collection $optionValues)
     {
+        // No collection for choice placeholder
+        if (!$optionValues) {
+            $optionValues = new ArrayCollection();
+        }
+
         $iterator = $optionValues->getIterator();
         $iterator->uasort(function ($a, $b) {
             return ($a->getId() > $b->getId()) ? 1 : -1;

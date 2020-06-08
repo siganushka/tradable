@@ -43,7 +43,7 @@ class ProductVariantType extends AbstractType
         // Used option values
         $usedOptionValues = [];
         foreach ($product->getVariants() as $variant) {
-            $usedOptionValues[] = (new OptionValueUtils($variant->getOptionValues()))->getIdAsString();
+            $usedOptionValues[] = $variant->getOptionValuesIdAsString();
         }
 
         // Generate groups

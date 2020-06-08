@@ -12,6 +12,7 @@ use Siganushka\GenericBundle\Model\ResourceInterface;
 use Siganushka\GenericBundle\Model\ResourceTrait;
 use Siganushka\GenericBundle\Model\TimestampableInterface;
 use Siganushka\GenericBundle\Model\TimestampableTrait;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductVariantRepository")
@@ -42,6 +43,9 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
     /**
      * @ORM\ManyToMany(targetEntity="ProductOptionValue", inversedBy="variants")
      * @ORM\JoinTable(name="product_variant_option_value")
+     *
+     * @Assert\Count(min=1)
+     * @Assert\Valid()
      */
     private $optionValues;
 
@@ -73,7 +77,7 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
         return $this->price;
     }
 
-    public function setPrice(int $price): ?self
+    public function setPrice(?int $price): ?self
     {
         $this->price = $price;
 
@@ -107,8 +111,12 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
         return $this->optionValues;
     }
 
-    public function setOptionValues(iterable $optionValues): self
+    public function setOptionValues(?Collection $optionValues): self
     {
+        if (!$optionValues) {
+            return $this;
+        }
+
         foreach ($optionValues as $optionValue) {
             $this->addOptionValue($optionValue);
         }
