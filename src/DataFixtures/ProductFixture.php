@@ -8,6 +8,7 @@ use App\Entity\ProductOptionValue;
 use App\Entity\ProductVariant;
 use function BenTools\CartesianProduct\cartesian_product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ObjectManager;
 
 class ProductFixture extends Fixture
@@ -100,9 +101,9 @@ class ProductFixture extends Fixture
     {
         $groups = [];
         foreach ($product->getOptions() as $option) {
+            $key = spl_object_hash($option);
             foreach ($option->getValues() as $optionValue) {
-                // group by option name (unique)
-                $groups[$option->getName()][] = $optionValue;
+                $groups[$key][] = $optionValue;
             }
         }
 
@@ -111,7 +112,7 @@ class ProductFixture extends Fixture
             $variant->setPrice(mt_rand(100, 999) * 100);
             $variant->setInventory(mt_rand(1, 10));
             $variant->setEnabled(true);
-            $variant->setOptionValues($optionValues);
+            $variant->setOptionValues(new ArrayCollection($optionValues));
             $product->addVariant($variant);
         }
     }

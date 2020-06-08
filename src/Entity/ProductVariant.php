@@ -113,7 +113,7 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
 
     public function setOptionValues(?Collection $optionValues): self
     {
-        if (!$optionValues) {
+        if (null === $optionValues) {
             return $this;
         }
 

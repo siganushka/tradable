@@ -58,7 +58,7 @@ class ProductVariantType extends AbstractType
         // Generate choices
         $choices = [];
         foreach (cartesian_product($groups) as $optionValues) {
-            $choices[] = new ArrayCollection(array_values($optionValues));
+            $choices[] = new ArrayCollection($optionValues);
         }
 
         $event->getForm()
@@ -84,7 +84,7 @@ class ProductVariantType extends AbstractType
                 'choice_value' => function (?Collection $choice) {
                     return (new OptionValueUtils($choice))->getIdAsString();
                 },
-                'choice_label' => function (Collection $choice, $key, $value) use ($usedOptionValues) {
+                'choice_label' => function (?Collection $choice, $key, $value) use ($usedOptionValues) {
                     $label = (new OptionValueUtils($choice))->getNameAsString();
                     if (\in_array($value, $usedOptionValues)) {
                         $label .= ' (√)';
@@ -92,7 +92,7 @@ class ProductVariantType extends AbstractType
 
                     return $label;
                 },
-                'choice_attr' => function (Collection $choice, $key, $value) use ($usedOptionValues) {
+                'choice_attr' => function (?Collection $choice, $key, $value) use ($usedOptionValues) {
                     return ['disabled' => \in_array($value, $usedOptionValues)];
                 },
                 'choice_translation_domain' => false,
