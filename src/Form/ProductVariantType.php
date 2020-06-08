@@ -96,6 +96,7 @@ class ProductVariantType extends AbstractType
                     return ['disabled' => \in_array($value, $usedOptionValues)];
                 },
                 'choice_translation_domain' => false,
+                'disabled' => !$data->isNew(),
             ])
         ;
     }
