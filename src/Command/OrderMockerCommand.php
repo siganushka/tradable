@@ -38,8 +38,8 @@ class OrderMockerCommand extends Command
         $count = $input->getArgument('count');
 
         $query = $this->entityManager->createQueryBuilder()
-            ->select('pi')
-            ->from('App\Entity\ProductVariant', 'pi')
+            ->select('pv')
+            ->from('App\Entity\ProductVariant', 'pv')
             ->setMaxResults(5)
             ->getQuery();
 
@@ -47,7 +47,7 @@ class OrderMockerCommand extends Command
         if (!\count($variants)) {
             $io->error('Unable to generate order from empty product variants.');
 
-            return 0;
+            return Command::FAILURE;
         }
 
         for ($i = 0; $i < $count; ++$i) {
@@ -66,6 +66,6 @@ class OrderMockerCommand extends Command
 
         $io->success(sprintf('The %d rows mock data for order has been genearted.', $count));
 
-        return 0;
+        return Command::SUCCESS;
     }
 }
