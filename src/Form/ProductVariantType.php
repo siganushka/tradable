@@ -30,7 +30,6 @@ class ProductVariantType extends AbstractType
     {
         $resolver->setDefaults([
             'class' => ProductVariant::class,
-            'attr' => ['novalidate' => 'novalidate'],
         ]);
     }
 
@@ -82,7 +81,7 @@ class ProductVariantType extends AbstractType
                 'label' => 'resource.product.options',
                 'placeholder' => 'app.choice',
                 'choices' => $choices,
-                'choice_value' => function (Collection $choice) {
+                'choice_value' => function (?Collection $choice) {
                     return (new OptionValueUtils($choice))->getIdAsString();
                 },
                 'choice_label' => function (Collection $choice, $key, $value) use ($usedOptionValues) {

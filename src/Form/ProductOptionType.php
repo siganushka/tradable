@@ -38,7 +38,6 @@ class ProductOptionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ProductOption::class,
-            'attr' => ['novalidate' => 'novalidate'],
         ]);
     }
 }
