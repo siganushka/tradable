@@ -45,7 +45,7 @@ class OrderItem implements ResourceInterface
         // generate variant name for order item.
         $name = $product->getName();
         if (!$variant->getOptionValues()->isEmpty()) {
-            $name .= sprintf(' (%s)', $variant->getOptionValuesNameAsString());
+            $name .= sprintf(' (%s)', $variant->getOptionValuesNames());
         }
 
         $this->variant = $variant;

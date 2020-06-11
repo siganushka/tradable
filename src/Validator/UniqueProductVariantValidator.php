@@ -16,10 +16,10 @@ class UniqueProductVariantValidator extends ConstraintValidator
         }
 
         $tokens = [];
-        $curret = $value->getOptionValuesIdAsString();
+        $curret = $value->getOptionValuesIds();
 
         foreach ($value->getProduct()->getVariants() as $variant) {
-            if ($curret === $token = $variant->getOptionValuesIdAsString()) {
+            if ($curret === $token = $variant->getOptionValuesIds()) {
                 if ($value->isNew()) {
                     array_push($tokens, $token);
                 } else {

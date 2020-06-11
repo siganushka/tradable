@@ -24,12 +24,12 @@ class OptionValueUtils
         $this->optionValues = iterator_to_array($iterator);
     }
 
-    public function getIdAsString()
+    public function getIds()
     {
         return implode('/', array_map(fn ($item) => $item->getId(), $this->optionValues));
     }
 
-    public function getNameAsString()
+    public function getNames()
     {
         return implode('/', array_map(fn ($item) => $item->getName(), $this->optionValues));
     }

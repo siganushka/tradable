@@ -96,14 +96,14 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
         return $this;
     }
 
-    public function getOptionValuesIdAsString()
+    public function getOptionValuesIds()
     {
-        return (new OptionValueUtils($this->optionValues))->getIdAsString();
+        return (new OptionValueUtils($this->optionValues))->getIds();
     }
 
-    public function getOptionValuesNameAsString()
+    public function getOptionValuesNames()
     {
-        return (new OptionValueUtils($this->optionValues))->getNameAsString();
+        return (new OptionValueUtils($this->optionValues))->getNames();
     }
 
     public function getOptionValues(): Collection

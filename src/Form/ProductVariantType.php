@@ -43,7 +43,7 @@ class ProductVariantType extends AbstractType
         // Used option values
         $usedOptionValues = [];
         foreach ($product->getVariants() as $variant) {
-            $usedOptionValues[] = $variant->getOptionValuesIdAsString();
+            $usedOptionValues[] = $variant->getOptionValuesIds();
         }
 
         // Generate groups
@@ -82,10 +82,10 @@ class ProductVariantType extends AbstractType
                 'placeholder' => 'app.choice',
                 'choices' => $choices,
                 'choice_value' => function (?Collection $choice) {
-                    return (new OptionValueUtils($choice))->getIdAsString();
+                    return (new OptionValueUtils($choice))->getIds();
                 },
                 'choice_label' => function (?Collection $choice, $key, $value) use ($usedOptionValues) {
-                    $label = (new OptionValueUtils($choice))->getNameAsString();
+                    $label = (new OptionValueUtils($choice))->getNames();
                     if (\in_array($value, $usedOptionValues)) {
                         $label .= ' (√)';
                     }
