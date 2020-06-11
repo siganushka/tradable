@@ -15,22 +15,20 @@ class UniqueProductVariantValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, ProductVariant::class);
         }
 
-        $tokens = [];
-        $curret = $value->getOptionValuesIds();
-
+        $optionChoiceKeys = [];
         foreach ($value->getProduct()->getVariants() as $variant) {
-            if ($curret === $token = $variant->getOptionValuesIds()) {
+            if ($value->getOptionChoiceKey() === $key = $variant->getOptionChoiceKey()) {
                 if ($value->isNew()) {
-                    array_push($tokens, $token);
+                    array_push($optionChoiceKeys, $key);
                 } else {
                     if (!$variant->isEqualTo($value)) {
-                        array_push($tokens, $token);
+                        array_push($optionChoiceKeys, $key);
                     }
                 }
             }
         }
 
-        if (\count($tokens)) {
+        if (\count($optionChoiceKeys)) {
             $this->context->buildViolation($constraint->message)
                 ->atPath($constraint->errorPath)
                 ->addViolation();

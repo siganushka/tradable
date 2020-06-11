@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Siganushka\GenericBundle\Model\ResourceInterface;
 use Siganushka\GenericBundle\Model\ResourceTrait;
@@ -35,18 +33,9 @@ class ProductOption implements ResourceInterface, SortableInterface, Timestampab
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProductOptionValue", mappedBy="option", cascade={"all"}, orphanRemoval=true)
-     * @ORM\OrderBy({"id": "ASC"})
-     *
-     * @Assert\Count(min=1)
-     * @Assert\Valid()
+     * @ORM\Column(type="json")
      */
-    private $values;
-
-    public function __construct()
-    {
-        $this->values = new ArrayCollection();
-    }
+    private $choices = [];
 
     public function getProduct(): ?Product
     {
@@ -72,35 +61,33 @@ class ProductOption implements ResourceInterface, SortableInterface, Timestampab
         return $this;
     }
 
-    public function getValues(): Collection
+    public function getChoices(): ?array
     {
-        return $this->values;
+        return $this->choices;
     }
 
-    public function addValue(ProductOptionValue $value): self
+    public function setChoices(array $choices): self
     {
-        if (!$this->values->contains($value)) {
-            $this->values[] = $value;
-            $value->setOption($this);
-        }
+        $this->choices = $this->filterChoices($choices);
 
         return $this;
     }
 
-    public function removeValue(ProductOptionValue $value): self
+    private function filterChoices(array $choices)
     {
-        if ($this->values->contains($value)) {
-            $this->values->removeElement($value);
-            if ($value->getOption() === $this) {
-                $value->setOption(null);
+        $choices = array_filter(array_unique(array_map('trim', $choices)));
+
+        $newChoices = [];
+        foreach ($choices as $key => $value) {
+            if (!\is_int($key)) {
+                $newChoices[$key] = $value;
+                continue;
             }
+
+            $newKey = uniqid();
+            $newChoices[$newKey] = $value;
         }
 
-        return $this;
-    }
-
-    public function generateKey()
-    {
-        return sprintf('product_option_%s', $this->id);
+        return $newChoices;
     }
 }

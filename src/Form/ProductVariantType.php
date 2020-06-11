@@ -3,10 +3,7 @@
 namespace App\Form;
 
 use App\Entity\ProductVariant;
-use App\Utils\OptionValueUtils;
-use function BenTools\CartesianProduct\cartesian_product;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Generator\ProductVariantGenerator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,8 +13,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProductVariantType extends AbstractType
 {
@@ -40,26 +35,13 @@ class ProductVariantType extends AbstractType
             return;
         }
 
-        // Used option values
-        $usedOptionValues = [];
+        $usedOptionChoiceKeys = [];
         foreach ($product->getVariants() as $variant) {
-            $usedOptionValues[] = $variant->getOptionValuesIds();
+            $usedOptionChoiceKeys[] = $variant->getOptionChoiceKey();
         }
 
-        // Generate groups
-        $groups = [];
-        foreach ($product->getOptions() as $option) {
-            $key = spl_object_hash($option);
-            foreach ($option->getValues() as $optionValue) {
-                $groups[$key][] = $optionValue;
-            }
-        }
-
-        // Generate choices
-        $choices = [];
-        foreach (cartesian_product($groups) as $optionValues) {
-            $choices[] = new ArrayCollection($optionValues);
-        }
+        $choices = new ProductVariantGenerator($product);
+        $choices = array_flip($choices->toArray());
 
         $event->getForm()
             ->add('price', MoneyType::class, [
@@ -67,33 +49,27 @@ class ProductVariantType extends AbstractType
                 'attr' => ['placeholder' => 'resource.product.variant.price.help'],
                 'currency' => 'CNY',
                 'divisor' => 100,
-                'constraints' => new NotBlank(),
             ])
             ->add('inventory', IntegerType::class, [
                 'label' => 'resource.product.variant.inventory',
                 'attr' => ['placeholder' => 'resource.product.variant.inventory_untracked.help'],
-                'constraints' => new GreaterThanOrEqual(0),
             ])
             ->add('enabled', CheckboxType::class, [
                 'label' => 'app.enabled',
             ])
-            ->add('optionValues', ChoiceType::class, [
+            ->add('optionChoiceKey', ChoiceType::class, [
                 'label' => 'resource.product.options',
                 'placeholder' => 'app.choice',
                 'choices' => $choices,
-                'choice_value' => function (?Collection $choice) {
-                    return (new OptionValueUtils($choice))->getIds();
-                },
-                'choice_label' => function (?Collection $choice, $key, $value) use ($usedOptionValues) {
-                    $label = (new OptionValueUtils($choice))->getNames();
-                    if (\in_array($value, $usedOptionValues)) {
-                        $label .= ' (√)';
+                'choice_label' => function ($choice, $key, $value) use ($usedOptionChoiceKeys) {
+                    if (\in_array($value, $usedOptionChoiceKeys)) {
+                        $key .= ' (√)';
                     }
 
-                    return $label;
+                    return $key;
                 },
-                'choice_attr' => function (?Collection $choice, $key, $value) use ($usedOptionValues) {
-                    return ['disabled' => \in_array($value, $usedOptionValues)];
+                'choice_attr' => function ($choice, $key, $value) use ($usedOptionChoiceKeys) {
+                    return ['disabled' => \in_array($value, $usedOptionChoiceKeys)];
                 },
                 'choice_translation_domain' => false,
                 'disabled' => !$data->isNew(),

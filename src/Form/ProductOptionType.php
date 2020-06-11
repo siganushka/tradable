@@ -3,12 +3,12 @@
 namespace App\Form;
 
 use App\Entity\ProductOption;
-use App\Form\DataTransformer\OptionValueToStringTransformer;
-use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use function Symfony\Component\String\u;
 
 class ProductOptionType extends AbstractType
 {
@@ -22,15 +22,21 @@ class ProductOptionType extends AbstractType
                     'placeholder' => 'resource.product.options.name.help',
                 ],
             ])
-            ->add('values', TextType::class, [
-                'label' => 'resource.product.options.value',
-                'attr' => ['placeholder' => 'resource.product.options.values.help'],
+            ->add('choices', TextType::class, [
+                'label' => 'resource.product.options.choices',
+                'attr' => ['placeholder' => 'resource.product.options.choices.help'],
             ])
         ;
 
-        $builder->get('values')
-            ->addModelTransformer(new CollectionToArrayTransformer(), true)
-            ->addModelTransformer(new OptionValueToStringTransformer(), true)
+        $builder->get('choices')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($choiceAsArray) {
+                    return $choiceAsArray ? implode('/', $choiceAsArray) : '';
+                },
+                function ($choiceAsString) {
+                    return array_filter(array_unique(array_map('trim', u($choiceAsString)->split('/'))));
+                }
+            ))
         ;
     }
 

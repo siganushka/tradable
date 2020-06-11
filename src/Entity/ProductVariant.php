@@ -2,7 +2,8 @@
 
 namespace App\Entity;
 
-use App\Utils\OptionValueUtils;
+use App\Exception\InvalidOptionChoiceKeyException;
+use App\Generator\ProductVariantGenerator;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,27 +28,31 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="variants")
+     *
+     * @Assert\NotBlank()
      */
     private $product;
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * @Assert\NotBlank()
      */
     private $price;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $inventory;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ProductOptionValue", inversedBy="variants")
-     * @ORM\JoinTable(name="product_variant_option_value")
+     * @ORM\Column(type="string", length=255, unique=true, nullable=true)
      *
-     * @Assert\Count(min=1)
-     * @Assert\Valid()
+     * @Assert\NotBlank()
      */
-    private $optionValues;
+    private $optionChoiceKey;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="variant")
@@ -56,7 +61,6 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
 
     public function __construct()
     {
-        $this->optionValues = new ArrayCollection();
         $this->orderItems = new ArrayCollection();
     }
 
@@ -96,54 +100,27 @@ class ProductVariant implements ResourceInterface, EnableInterface, Timestampabl
         return $this;
     }
 
-    public function getOptionValuesIds()
+    public function getOptionChoiceKey(): ?string
     {
-        return (new OptionValueUtils($this->optionValues))->getIds();
+        return $this->optionChoiceKey;
     }
 
-    public function getOptionValuesNames()
+    public function setOptionChoiceKey(?string $optionChoiceKey): self
     {
-        return (new OptionValueUtils($this->optionValues))->getNames();
-    }
-
-    public function getOptionValues(): Collection
-    {
-        return $this->optionValues;
-    }
-
-    public function setOptionValues(?Collection $optionValues): self
-    {
-        if (null === $optionValues) {
-            return $this;
-        }
-
-        foreach ($optionValues as $optionValue) {
-            $this->addOptionValue($optionValue);
-        }
+        $this->optionChoiceKey = $optionChoiceKey;
 
         return $this;
     }
 
-    public function addOptionValue(?ProductOptionValue $optionValue): self
+    public function getOptionChoiceValue()
     {
-        if (null === $optionValue) {
-            return $this;
+        $generator = new ProductVariantGenerator($this->product);
+
+        if (!$generator->offsetExists($this->optionChoiceKey)) {
+            throw new InvalidOptionChoiceKeyException($this);
         }
 
-        if (!$this->optionValues->contains($optionValue)) {
-            $this->optionValues[] = $optionValue;
-        }
-
-        return $this;
-    }
-
-    public function removeOptionValue(ProductOptionValue $optionValue): self
-    {
-        if ($this->optionValues->contains($optionValue)) {
-            $this->optionValues->removeElement($optionValue);
-        }
-
-        return $this;
+        return $generator->offsetGet($this->optionChoiceKey);
     }
 
     public function getOrderItems(): Collection

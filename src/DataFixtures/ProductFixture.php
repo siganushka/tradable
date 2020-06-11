@@ -4,11 +4,9 @@ namespace App\DataFixtures;
 
 use App\Entity\Product;
 use App\Entity\ProductOption;
-use App\Entity\ProductOptionValue;
 use App\Entity\ProductVariant;
-use function BenTools\CartesianProduct\cartesian_product;
+use App\Generator\ProductVariantGenerator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ObjectManager;
 
 class ProductFixture extends Fixture
@@ -24,10 +22,7 @@ class ProductFixture extends Fixture
     {
         $option1 = new ProductOption();
         $option1->setName('版本');
-        $option1->addValue(new ProductOptionValue('16GB+65寸'));
-        $option1->addValue(new ProductOptionValue('32GB+65寸'));
-        $option1->addValue(new ProductOptionValue('16GB+75寸'));
-        $option1->addValue(new ProductOptionValue('32GB+75寸'));
+        $option1->setChoices(['16GB+65寸', '32GB+65寸', '16GB+75寸', '32GB+75寸']);
 
         $product = new Product();
         $product->setName('小米 4X 液晶平板电视');
@@ -47,12 +42,7 @@ class ProductFixture extends Fixture
     {
         $option1 = new ProductOption();
         $option1->setName('尺码');
-        $option1->addValue(new ProductOptionValue('均码'));
-        $option1->addValue(new ProductOptionValue('XS'));
-        $option1->addValue(new ProductOptionValue('S'));
-        $option1->addValue(new ProductOptionValue('M'));
-        $option1->addValue(new ProductOptionValue('L'));
-        $option1->addValue(new ProductOptionValue('XL'));
+        $option1->setChoices(['均码', 'XS', 'S', 'M', 'L', 'XL']);
 
         $product = new Product();
         $product->setName('李维斯圆领纯棉长袖卫衣');
@@ -72,15 +62,11 @@ class ProductFixture extends Fixture
     {
         $option1 = new ProductOption();
         $option1->setName('颜色');
-        $option1->addValue(new ProductOptionValue('黑色'));
-        $option1->addValue(new ProductOptionValue('白色'));
-        $option1->addValue(new ProductOptionValue('粉色'));
+        $option1->setChoices(['黑色', '白色', '粉色']);
 
         $option2 = new ProductOption();
         $option2->setName('存储');
-        $option2->addValue(new ProductOptionValue('64GB'));
-        $option2->addValue(new ProductOptionValue('128GB'));
-        $option2->addValue(new ProductOptionValue('256GB'));
+        $option2->setChoices(['64GB', '128GB', '256GB']);
 
         $product = new Product();
         $product->setName('Google Pixel 3');
@@ -99,20 +85,12 @@ class ProductFixture extends Fixture
 
     private function generateVariants(Product $product)
     {
-        $groups = [];
-        foreach ($product->getOptions() as $option) {
-            $key = spl_object_hash($option);
-            foreach ($option->getValues() as $optionValue) {
-                $groups[$key][] = $optionValue;
-            }
-        }
-
-        foreach (cartesian_product($groups) as $optionValues) {
+        foreach (new ProductVariantGenerator($product) as $key => $value) {
             $variant = new ProductVariant();
             $variant->setPrice(mt_rand(100, 999) * 100);
             $variant->setInventory(mt_rand(1, 10));
             $variant->setEnabled(true);
-            $variant->setOptionValues(new ArrayCollection($optionValues));
+            $variant->setOptionChoiceKey($key);
             $product->addVariant($variant);
         }
     }

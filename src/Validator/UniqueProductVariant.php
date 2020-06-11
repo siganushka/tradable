@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
 class UniqueProductVariant extends Constraint
 {
     public $message = 'This value is already used.';
-    public $errorPath = 'optionValues';
+    public $errorPath = 'optionChoiceKey';
 
     public function getTargets()
     {

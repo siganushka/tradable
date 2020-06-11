@@ -2,6 +2,6 @@
 
 namespace App\Generator;
 
-interface ProductVariantGeneratorInterface
+interface ProductVariantGeneratorInterface extends \ArrayAccess, \IteratorAggregate, \Countable
 {
 }

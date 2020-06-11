@@ -125,9 +125,6 @@ class ProductController extends AbstractController
             if (!empty($uow->getEntityChangeSet($option))) {
                 throw new \RuntimeException(sprintf('Cannot be modify options #%d!', $option->getId()));
             }
-            if ($option->getValues()->isDirty()) {
-                throw new \RuntimeException(sprintf('Cannot be modify options #%d values!', $option->getId()));
-            }
         }
     }
 }
