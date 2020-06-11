@@ -60,8 +60,9 @@ class OrderController extends AbstractController
             $entity->setState(Order::STATE_PENDING);
             $em->flush();
 
-            $this->addTransedMessage('success', sprintf('The order "#%s" has been reset.',
-                $entity->getNumber()));
+            $this->addFlash('success', $this->transMessage('message.order.reseted', [
+                'number' => $entity->getNumber(),
+            ]));
 
             return $this->redirectToRoute('admin_order');
         }
@@ -71,14 +72,15 @@ class OrderController extends AbstractController
         try {
             $workflow->apply($entity, $transition);
         } catch (ExceptionInterface $e) {
-            $this->addTransedMessage('danger', $e->getMessage());
+            $this->addFlash('danger', $e->getMessage());
 
             return $this->redirectToRoute('admin_order');
         }
 
         $em->flush();
-        $this->addTransedMessage('success', sprintf('The order "#%s" has been updated.',
-            $entity->getNumber()));
+        $this->addFlash('success', $this->transMessage('message.order.updated', [
+            'number' => $entity->getNumber(),
+        ]));
 
         return $this->redirectToRoute('admin_order');
     }

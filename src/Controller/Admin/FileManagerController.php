@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Event\UploadedFileEvent;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,13 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FileManagerController extends AbstractController
 {
-    private $dispatcher;
-
-    public function __construct(EventDispatcherInterface $dispatcher)
-    {
-        $this->dispatcher = $dispatcher;
-    }
-
     /**
      * @Route("/files", name="admin_file", methods={"GET", "POST"})
      */
@@ -68,7 +60,7 @@ class FileManagerController extends AbstractController
         }
 
         $event = new UploadedFileEvent($file, $uploadedFile);
-        $this->dispatcher->dispatch($event);
+        $this->dispatchEvent($event);
 
         if (!$event->isPropagationStopped()) {
             return $this->json(['message' => 'No listeners was found.'], 400);

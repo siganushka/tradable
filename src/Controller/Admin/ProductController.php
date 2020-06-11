@@ -45,9 +45,9 @@ class ProductController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            $this->addTransedMessage('success', 'message.product.created', [
-                '%name%' => $entity->getName(),
-            ]);
+            $this->addFlash('success', $this->transMessage('message.product.created', [
+                'name' => $entity->getName(),
+            ]));
 
             return $this->redirectToRoute('admin_product');
         }
@@ -77,9 +77,9 @@ class ProductController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            $this->addTransedMessage('success', 'message.product.updated', [
-                '%name%' => $entity->getName(),
-            ]);
+            $this->addFlash('success', $this->transMessage('message.product.updated', [
+                'name' => $entity->getName(),
+            ]));
 
             return $this->redirectToRoute('admin_product');
         }
@@ -103,9 +103,9 @@ class ProductController extends AbstractController
         // $em->remove($entity);
         // $em->flush();
 
-        $this->addTransedMessage('success', 'message.product.deleted', [
-            '%name%' => $entity->getName(),
-        ]);
+        $this->addFlash('success', $this->transMessage('message.product.deleted', [
+            'name' => $entity->getName(),
+        ]));
 
         return $this->redirectToRoute('admin_product');
     }

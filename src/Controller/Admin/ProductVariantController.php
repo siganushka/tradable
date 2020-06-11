@@ -57,9 +57,9 @@ class ProductVariantController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            $this->addTransedMessage('success', 'message.product.variant.updated', [
-                '%name%' => $entity->getOptionValuesNameAsString(),
-            ]);
+            $this->addFlash('success', $this->transMessage('message.product.variant.updated', [
+                'name' => $entity->getOptionValuesNameAsString(),
+            ]));
 
             return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
         }
@@ -87,9 +87,9 @@ class ProductVariantController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            $this->addTransedMessage('success', 'message.product.variant.updated', [
-                '%name%' => $entity->getOptionValuesNameAsString(),
-            ]);
+            $this->addFlash('success', $this->transMessage('message.product.variant.updated', [
+                'name' => $entity->getOptionValuesNameAsString(),
+            ]));
 
             return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
         }
@@ -111,7 +111,7 @@ class ProductVariantController extends AbstractController
 
         $product = $entity->getProduct();
         if (!$this->isCsrfTokenValid('delete', $request->query->get('token'))) {
-            $this->addTransedMessage('danger', 'csrf_token.invalid');
+            $this->addFlash('danger', $this->transMessage('csrf_token.invalid'));
 
             return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
         }
@@ -120,9 +120,9 @@ class ProductVariantController extends AbstractController
         // $em->remove($entity);
         // $em->flush();
 
-        $this->addTransedMessage('success', 'product.variant.deleted', [
-            '%name%' => $entity->getOptionValuesNameAsString(),
-        ]);
+        $this->addFlash('success', $this->transMessage('product.variant.deleted', [
+            'name' => $entity->getOptionValuesNameAsString(),
+        ]));
 
         return $this->redirectToRoute('admin_product_variant', ['productId' => $product->getId()]);
     }
