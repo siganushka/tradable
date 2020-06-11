@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a61165e4dbb16275954c70b85a1ec5cb",
+    "content-hash": "18bb590aadfba1ba61423e0e197d7c1d",
     "packages": [
         {
             "name": "bentools/cartesian-product",
@@ -1714,7 +1714,7 @@
         },
         {
             "name": "siganushka/generic-bundle",
-            "version": "dev-master",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/siganushka/generic-bundle.git",
@@ -6724,9 +6724,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "siganushka/generic-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
