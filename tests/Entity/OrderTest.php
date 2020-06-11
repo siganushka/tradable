@@ -4,6 +4,7 @@ namespace App\Tests\Entity;
 
 use App\Entity\Order;
 use App\Entity\OrderItem;
+use App\Entity\Product;
 use App\Entity\ProductVariant;
 use PHPUnit\Framework\TestCase;
 
@@ -11,13 +12,16 @@ class OrderTest extends TestCase
 {
     public function testOrder()
     {
+        $product = new Product();
+        $product->setName('test product');
+
         $variant1 = new ProductVariant();
-        $variant1->setName('product variant 1');
         $variant1->setPrice(10);
+        $variant1->setProduct($product);
 
         $variant2 = new ProductVariant();
-        $variant2->setName('product variant 2');
         $variant2->setPrice(20);
+        $variant2->setProduct($product);
 
         $orderItem1 = new OrderItem($variant1, 3);
         $orderItem2 = new OrderItem($variant2, 5);

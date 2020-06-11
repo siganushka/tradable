@@ -1718,16 +1718,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/siganushka/generic-bundle.git",
-                "reference": "e74478f3793c351d53e317b6533d79b3f8a0e4cc"
+                "reference": "d609491facfbbef63885ba84ae3d638b62683257"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/siganushka/generic-bundle/zipball/e74478f3793c351d53e317b6533d79b3f8a0e4cc",
-                "reference": "e74478f3793c351d53e317b6533d79b3f8a0e4cc",
+                "url": "https://api.github.com/repos/siganushka/generic-bundle/zipball/d609491facfbbef63885ba84ae3d638b62683257",
+                "reference": "d609491facfbbef63885ba84ae3d638b62683257",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.7",
+                "symfony/form": "^4.4|^5.0",
                 "symfony/framework-bundle": "^4.4|^5.0",
                 "symfony/serializer": "^4.4|^5.0",
                 "symfony/validator": "^4.4|^5.0"
@@ -1758,7 +1759,7 @@
                 }
             ],
             "description": "Generic bundle for symfony.",
-            "time": "2020-05-14T13:19:20+00:00"
+            "time": "2020-06-11T07:11:27+00:00"
         },
         {
             "name": "symfony/asset",
