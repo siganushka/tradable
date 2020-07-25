@@ -34,6 +34,8 @@ class ProductOption implements ResourceInterface, SortableInterface, Timestampab
 
     /**
      * @ORM\Column(type="json")
+     *
+     * @Assert\NotBlank()
      */
     private $choices = [];
 

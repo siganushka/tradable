@@ -52,7 +52,7 @@ class ProductVariantGenerator implements ProductVariantGeneratorInterface
         throw new \LogicException('Removing options via array access is not supported.');
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return $this->items;
     }
